@@ -34,7 +34,9 @@ public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
      */
     @Override
     public void create(User t) {
+    	System.out.println(inMemoryDB.size());
         this.inMemoryDB.add(t);
+        System.out.println(inMemoryDB.size());
     }
     
     /**
@@ -42,6 +44,7 @@ public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
      */
     @Override
     public void remove(String key) {
+    	System.out.println(inMemoryDB.size());
         int end = this.inMemoryDB.size();
         int index = 0;
         for (; index < end; index++) {
@@ -53,6 +56,7 @@ public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
         if (index < end) {
             this.inMemoryDB.remove(index);
         }
+        System.out.println(inMemoryDB.size());
     }
     
     /**
