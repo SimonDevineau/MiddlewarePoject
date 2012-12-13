@@ -40,9 +40,9 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 		CompilationTask cTask = compiler.getTask(writer, fileManager, null,
 				null, null, sourceFiles);
 
-		cTask.call();
-
 		Result res = new Result();
+		res.setSucceed(cTask.call());
+
 
 		res.setOutput(writer.toString());
 
@@ -56,7 +56,9 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 		PrintStream stdOut = System.out;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
-			Method method = classLoader.loadClass(className).getMethod("main",
+			Class<?> loadedClass = classLoader.loadClass(className);
+			
+			Method method = loadedClass.getMethod("main",
 					String[].class);
 
 			PrintStream ps = new PrintStream(baos);

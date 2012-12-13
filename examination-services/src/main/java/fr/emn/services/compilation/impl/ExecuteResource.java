@@ -30,10 +30,13 @@ public final class ExecuteResource {
 		GlobalResult globalResult = new GlobalResult();
 		
 		globalResult.setCompilation(compiler.compile(files));
-		String[] params = new String[0];
-		globalResult.getExecution().setOutput(
-				compiler.execute(className, "main", new Object[] { params }));
-
+		if (globalResult.getCompilation().isSucceed()) {
+			String[] params = new String[0];
+			globalResult.getExecution()
+					.setOutput(
+							compiler.execute(className, "main",
+									new Object[] { params }));
+		}
 		return globalResult;
 	}
 

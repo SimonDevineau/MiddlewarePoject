@@ -18,6 +18,16 @@ public class Result {
 	@XmlElement
 	private int timeElapsed;
 
+	private boolean succeed;
+
+	public boolean isSucceed() {
+		return succeed;
+	}
+
+	public void setSucceed(boolean succeed) {
+		this.succeed = succeed;
+	}
+
 	public Result() {
 		super();
 	}
