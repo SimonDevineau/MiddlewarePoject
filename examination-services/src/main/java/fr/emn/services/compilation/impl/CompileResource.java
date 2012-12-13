@@ -9,13 +9,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.emn.services.compilation.GlobalResult;
+import fr.emn.services.compilation.Result;
 
-@Path("/execute")
-public final class ExecuteResource {
+@Path("/compile")
+public final class CompileResource {
+
+	
 	@POST
 	@Produces(MediaType.TEXT_XML)
-	public static GlobalResult execute(@FormParam("fileName") String fileName,
+	public static Result compile(@FormParam("fileName") String fileName,
 			@FormParam("sourceCode") String sourceCode) {
 		
 		String className = fileName.replace(".java", "");
@@ -26,15 +28,7 @@ public final class ExecuteResource {
 		
 
 		CustomJavaCompiler compiler = new CustomJavaCompiler();
-
-		GlobalResult globalResult = new GlobalResult();
 		
-		globalResult.setCompilation(compiler.compile(files));
-		String[] params = new String[0];
-		globalResult.getExecution().setOutput(
-				compiler.execute(className, "main", new Object[] { params }));
-
-		return globalResult;
+		return compiler.compile(files);
 	}
-
 }

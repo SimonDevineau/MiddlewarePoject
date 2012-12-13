@@ -14,44 +14,57 @@ import javax.tools.JavaCompiler.CompilationTask;
 import org.eclipse.jdt.internal.compiler.tool.EclipseCompiler;
 
 import fr.emn.services.compilation.Compiler;
+import fr.emn.services.compilation.Result;
 
 public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
-	
-	
 
 	private ClassFileManager fileManager;
-	
+
+	public ClassFileManager getFileManager() {
+		return fileManager;
+	}
+
+	public void setFileManager(ClassFileManager fileManager) {
+		this.fileManager = fileManager;
+	}
 
 	@Override
-	public String compile(List<InMemoryJavaFile> sourceFiles) {
-		
+	public Result compile(List<InMemoryJavaFile> sourceFiles) {
+
 		JavaCompiler compiler = new EclipseCompiler();
 		this.fileManager = new fr.emn.services.compilation.impl.ClassFileManager(
 				compiler.getStandardFileManager(null, null, null));
-		
+
 		StringWriter writer = new StringWriter();
-		CompilationTask cTask =  compiler.getTask(writer, fileManager, null, null, null, sourceFiles);
+
+		CompilationTask cTask = compiler.getTask(writer, fileManager, null,
+				null, null, sourceFiles);
+
 		cTask.call();
-		
-		return writer.toString();
+
+		Result res = new Result();
+
+		res.setOutput(writer.toString());
+
+		return res;
 	}
 
 	@Override
 	public String execute(String className, String functionName, Object[] args) {
-		
+
 		ClassLoader classLoader = fileManager.getClassLoader(null);
 		PrintStream stdOut = System.out;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
-			Method method = classLoader.loadClass(className).getMethod("main", String[].class);
-			
-		    PrintStream ps = new PrintStream(baos);
-		    
-		    System.setOut(ps);			
+			Method method = classLoader.loadClass(className).getMethod("main",
+					String[].class);
+
+			PrintStream ps = new PrintStream(baos);
+
+			System.setOut(ps);
 			method.invoke(null, args);
 			System.out.flush();
-			
-			
+
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -64,30 +77,32 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			System.setOut(stdOut);
 		}
 		return baos.toString();
 	}
-	
+
 	public static void main(String[] args) {
 		StringBuilder src = new StringBuilder();
 		src.append("public class DynaClass {\n");
 		src.append("    public static void main(String[] args) {\n");
 		src.append("        System.out.println(\"Hello, I am \" + ");
-		src.append(				" \"a class\");\n");
+		src.append(" \"a class\");\n");
 		src.append("    }\n");
 		src.append("}\n");
-		
+
 		InMemoryJavaFile file = new InMemoryJavaFile("DynaClass", src);
 		List<InMemoryJavaFile> files = new ArrayList<InMemoryJavaFile>();
 		files.add(file);
-		
+
 		CustomJavaCompiler compiler = new CustomJavaCompiler();
 		System.out.println(compiler.compile(files));
 		String[] params = new String[0];
-		System.out.println( " execution : " + compiler.execute("DynaClass", "main",new Object[] {params}));
-		
+		System.out.println(" execution : "
+				+ compiler
+						.execute("DynaClass", "main", new Object[] { params }));
+
 	}
 
 }

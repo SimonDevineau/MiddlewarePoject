@@ -8,7 +8,7 @@ public interface Compiler<T extends SourceFile> {
 	 * @param sourceFiles source files to compile
 	 * @return error messages if any.
 	 */
-	String compile(List<T> sourceFiles);
+	Result compile(List<T> sourceFiles);
 	
 	/**
 	 * @param className
