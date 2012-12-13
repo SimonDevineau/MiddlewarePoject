@@ -5,6 +5,13 @@
 package fr.emn.examination.model;
 
 import java.io.Serializable;
+import java.security.Principal;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Pierre Reliquet
@@ -27,6 +34,11 @@ public class User implements Serializable {
      * 
      */
     public User() {
+    	super();
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
     }
     
     /**
@@ -35,7 +47,7 @@ public class User implements Serializable {
      * @param userName
      */
     public User(String password, Role role, String userName) {
-        super();
+        this();
         this.password = password;
         this.role = role;
         this.userName = userName;
@@ -46,7 +58,7 @@ public class User implements Serializable {
      * @param userName
      */
     public User(String password, String userName) {
-        super();
+        this();
         this.password = password;
         this.userName = userName;
         this.role = Role.STUDENT;
@@ -97,4 +109,38 @@ public class User implements Serializable {
         this.userName = userName;
     }
     
+    public String login(){
+    	String message = "";
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        try {
+             
+            //Login via the Servlet Context
+            request.login(userName, password);
+             
+            //Retrieve the Principal
+            Principal principal = request.getUserPrincipal();
+             
+            //Display a message based on the User role
+            if(request.isUserInRole("Administrator")){
+                message = "Username : " + principal.getName() + " You are an Administrator";
+            }else if(request.isUserInRole("Student")){
+                message = "Username : " + principal.getName() + " You are a Student";
+            }
+             
+            //Add the welcome message to the faces context
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+            return "success";
+        } catch (ServletException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "An Error Occured: Login failed", null));
+            e.printStackTrace();
+        }
+        return "failure";
+    }
+    public void logout(){
+    	HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/index.xhtml");
+    }
 }

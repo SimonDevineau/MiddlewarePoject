@@ -11,4 +11,12 @@
    <!-- Write your navigation rules here. You are encouraged to use CDI for 
       creating @Named managed beans. -->
 
+
+ <managed-bean>
+ 	<managed-bean-name>userBean</managed-bean-name>
+ 	<managed-bean-class>fr.emn.examination.model.User</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
+ 
 </faces-config>
