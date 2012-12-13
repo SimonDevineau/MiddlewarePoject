@@ -19,6 +19,8 @@ public class User implements Serializable {
     
     private String            password;
     
+    private Role              role;
+    
     private String            userName;
     
     /**
@@ -29,12 +31,25 @@ public class User implements Serializable {
     
     /**
      * @param password
+     * @param role
+     * @param userName
+     */
+    public User(String password, Role role, String userName) {
+        super();
+        this.password = password;
+        this.role = role;
+        this.userName = userName;
+    }
+    
+    /**
+     * @param password
      * @param userName
      */
     public User(String password, String userName) {
         super();
         this.password = password;
         this.userName = userName;
+        this.role = Role.STUDENT;
     }
     
     /**
@@ -42,6 +57,13 @@ public class User implements Serializable {
      */
     public String getPassword() {
         return this.password;
+    }
+    
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+        return this.role;
     }
     
     /**
@@ -57,6 +79,14 @@ public class User implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    /**
+     * @param role
+     *            the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
     
     /**

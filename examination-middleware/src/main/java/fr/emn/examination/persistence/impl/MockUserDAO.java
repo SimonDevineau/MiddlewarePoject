@@ -7,6 +7,7 @@ package fr.emn.examination.persistence.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.emn.examination.model.Role;
 import fr.emn.examination.model.User;
 import fr.emn.examination.persistence.GenericDAO;
 
@@ -17,6 +18,15 @@ import fr.emn.examination.persistence.GenericDAO;
 public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
     
     private List<User> inMemoryDB = new ArrayList<User>();
+    
+    /**
+     * 
+     */
+    public MockUserDAO() {
+        this.inMemoryDB.add(new User("student", "student"));
+        this.inMemoryDB.add(new User("administrator", Role.ADMINISTRATOR,
+                "administrator"));
+    }
     
     /**
      * @see fr.emn.examination.persistence.GenericDAO#create(java.lang.Object)
