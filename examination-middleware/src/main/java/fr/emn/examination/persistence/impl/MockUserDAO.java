@@ -24,6 +24,7 @@ public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
      */
     public MockUserDAO() {
         this.inMemoryDB.add(new User("student", "student"));
+        this.inMemoryDB.add(new User("student1", "student1"));
         this.inMemoryDB.add(new User("administrator", Role.ADMINISTRATOR,
                 "administrator"));
     }
