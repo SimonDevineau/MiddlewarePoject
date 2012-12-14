@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.persistence.Factory;
+
 /**
  * @author Pierre Reliquet
  * 
@@ -109,38 +111,4 @@ public class User implements Serializable {
         this.userName = userName;
     }
     
-    public String login(){
-    	String message = "";
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        try {
-             
-            //Login via the Servlet Context
-            request.login(userName, password);
-             
-            //Retrieve the Principal
-            Principal principal = request.getUserPrincipal();
-             
-            //Display a message based on the User role
-            if(request.isUserInRole("Administrator")){
-                message = "Username : " + principal.getName() + " You are an Administrator";
-            }else if(request.isUserInRole("Student")){
-                message = "Username : " + principal.getName() + " You are a Student";
-            }
-             
-            //Add the welcome message to the faces context
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-            return "success";
-        } catch (ServletException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "An Error Occured: Login failed", null));
-            e.printStackTrace();
-        }
-        return "failure";
-    }
-    public void logout(){
-    	HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if(session != null){
-            session.invalidate();
-        }
-        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/index.xhtml");
-    }
 }

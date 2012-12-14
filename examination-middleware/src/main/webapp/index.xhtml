@@ -36,12 +36,12 @@
 				warnClass="warnMessage"></h:messages>
 			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel value="Username : "></p:outputLabel>
-				<p:inputText id="username" value="#{userBean.userName}"></p:inputText>
+				<p:inputText id="login" value="#{loginBean.login}"></p:inputText>
 
 				<p:outputLabel value="Password : "></p:outputLabel>
-				<p:password id="password" value="#{userBean.password}"></p:password> 
+				<p:password id="password" value="#{loginBean.password}"></p:password> 
 
-				<p:commandButton value="Submit" action="#{userBean.login}"
+				<p:commandButton value="Submit" action="#{loginBean.login}"
 					type="submit"></p:commandButton>
 				<p:commandButton value="Clear" type="reset"></p:commandButton>
 
