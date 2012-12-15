@@ -31,6 +31,7 @@
 			alt="Barre de séparation du menu et du body" id="sub_menu_barre" />
 
 	<h:form>
+		<p:growl id="growl" showDetail="true" sticky="true" />
 		<center>
 			<h:messages errorClass="errorMessage" infoClass="infoMessage"
 				warnClass="warnMessage"></h:messages>
@@ -42,7 +43,7 @@
 				<p:password id="password" value="#{loginBean.password}"></p:password> 
 
 				<p:commandButton value="Submit" action="#{loginBean.login}"
-					type="submit"></p:commandButton>
+					type="submit" update="growl"></p:commandButton>
 				<p:commandButton value="Clear" type="reset"></p:commandButton>
 
 				<p:commandLink value="Register" action="register"></p:commandLink>

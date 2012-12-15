@@ -6,6 +6,7 @@ package fr.emn.examination.util;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -87,6 +88,9 @@ public class Login implements Serializable {
     		Session.put("connected", true);
     		return "success";
     	}
+    	FacesContext context = FacesContext.getCurrentInstance();  
+        
+        context.addMessage(null, new FacesMessage( "Echec de la connexion", "Login ou password incorrect..." ));
     	return "failure";
     }
     
