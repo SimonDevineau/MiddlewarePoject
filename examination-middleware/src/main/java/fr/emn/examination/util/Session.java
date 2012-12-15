@@ -2,7 +2,7 @@
  * Part of the project : examination fr.emn.examination.model.User.java Created
  * by : pierre
  */
-package fr.emn.examination.model;
+package fr.emn.examination.util;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +11,8 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.emn.examination.persistence.Factory;
+import fr.emn.examination.model.Role;
+import fr.emn.examination.model.User;
 
 /**
  * @author Cedric Nisio

@@ -2,20 +2,22 @@
  * Part of the project : examination fr.emn.examination.model.User.java Created
  * by : pierre
  */
-package fr.emn.examination.model;
+package fr.emn.examination.util;
 
 import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.model.Role;
+import fr.emn.examination.model.User;
 import fr.emn.examination.persistence.Factory;
 
 /**
  * @author Cedric Nisio
  * 
  */
-public class Login implements Serializable {
+public class Register implements Serializable {
     
     /**
      * long
@@ -26,10 +28,12 @@ public class Login implements Serializable {
     
     private String            password;
     
+    private String            confirmPassword;
+    
     /**
      * 
      */
-    public Login() {
+    public Register() {
     	super();
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if(session != null){
@@ -42,10 +46,11 @@ public class Login implements Serializable {
      * @param role
      * @param userName
      */
-    public Login(String password, String login) {
+    public Register(String password, String confirmPassword, String login) {
         this();
         this.login = login;
         this.password = password;
+        this.confirmPassword = confirmPassword;
     }
     
     /**
@@ -60,6 +65,13 @@ public class Login implements Serializable {
      */
     public String getPassword() {
         return this.password;
+    }
+    
+    /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return this.confirmPassword;
     }
     
     /**
@@ -78,17 +90,22 @@ public class Login implements Serializable {
         this.password = password;
     }
     
-    public String login(){
-    	User user = Factory.getUserDAO().retrieveByKey(this.getLogin());
-    	if(user!=null&&user.getPassword().equals(this.getPassword())) {
-    		Session.put("currentUser", user);
-    		Session.put("connected", true);
+    /**
+     * @param confirmPassword
+     *            the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+    
+    public String register(){
+    	User userWithSameLogin = Factory.getUserDAO().retrieveByKey(getLogin());
+    	if(userWithSameLogin==null&&getPassword().equals(getConfirmPassword())) {
+        	User newUser = new User(getPassword(),Role.STUDENT,getLogin());
+        	Factory.getUserDAO().create(newUser);
     		return "success";
     	}
     	return "failure";
     }
-    public void logout(){
-    	HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.invalidate();
-    }
+    
 }

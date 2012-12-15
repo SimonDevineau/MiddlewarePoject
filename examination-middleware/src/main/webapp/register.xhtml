@@ -5,11 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-
-</h:head>
+<h:head></h:head>
 <body>
-	<ui:composition>
 		<h:outputStylesheet library="css" name="design.css"></h:outputStylesheet>
 		<h:panelGrid columns="3" width="100%">
 			<h:column>
@@ -20,23 +17,40 @@
 			</h:column>
 			<h:column>
 				<div id="title_header">
-					<h1>Plateforme de Compilation</h1>
+					<h1>EMN Examination</h1>
 				</div>
 			</h:column>
 			<h:column>
 				<div id="emn_header">
 					<img src="img/ecole_logo.gif" alt="EMN logo" id="logo_emn" />
 				</div>
-				<h:form>
-					<h:commandLink action="#{logoutBean.logout}" value="Logout" />
-				</h:form>
 			</h:column>
 		</h:panelGrid>
 		
 		<img src="img/sub_header_line.gif"
 			alt="Barre de séparation du menu et du body" id="sub_menu_barre" />
 
-	</ui:composition>
+	<h:form>
+		<center>
+			<h:messages errorClass="errorMessage" infoClass="infoMessage"
+				warnClass="warnMessage"></h:messages>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Username : "></p:outputLabel>
+				<p:inputText id="login" value="#{registerBean.login}"></p:inputText>
+
+				<p:outputLabel value="Password : "></p:outputLabel>
+				<p:password id="password" value="#{registerBean.password}"></p:password>
+				
+				<p:outputLabel value="Confirmation : "></p:outputLabel>
+				<p:password id="confirmPassword" value="#{registerBean.confirmPassword}"></p:password>
+
+				<p:commandButton value="Submit" action="#{registerBean.register}"
+					type="submit"></p:commandButton>
+				<p:commandButton value="Clear" type="reset"></p:commandButton>
+			</h:panelGrid>
+		</center>
+	</h:form>
+
 
 </body>
 </html>

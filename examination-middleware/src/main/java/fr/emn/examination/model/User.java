@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import fr.emn.examination.persistence.Factory;
+import fr.emn.examination.util.Coding;
 
 /**
  * @author Pierre Reliquet
@@ -50,7 +51,7 @@ public class User implements Serializable {
      */
     public User(String password, Role role, String userName) {
         this();
-        this.password = password;
+        this.password = new Coding().plainStringToMD5(password+userName);
         this.role = role;
         this.userName = userName;
     }
@@ -61,7 +62,7 @@ public class User implements Serializable {
      */
     public User(String password, String userName) {
         this();
-        this.password = password;
+        this.password = new Coding().plainStringToMD5(password+userName);
         this.userName = userName;
         this.role = Role.STUDENT;
     }

@@ -13,15 +13,45 @@
  </managed-bean>
  <managed-bean>
   <managed-bean-name>loginBean</managed-bean-name>
-  <managed-bean-class>fr.emn.examination.model.Login</managed-bean-class>
+  <managed-bean-class>fr.emn.examination.util.Login</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>logoutBean</managed-bean-name>
+  <managed-bean-class>fr.emn.examination.util.Logout</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>registerBean</managed-bean-name>
+  <managed-bean-class>fr.emn.examination.util.Register</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
-  <from-view-id>/index.xhtml</from-view-id>
+  <from-view-id>/login.xhtml</from-view-id>
   <navigation-case>
    <from-action>#{loginBean.login}</from-action>
    <from-outcome>success</from-outcome>
    <to-view-id>/home.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>register</from-outcome>
+   <to-view-id>/register.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/*</from-view-id>
+  <navigation-case>
+   <from-outcome>logout</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/register.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{registerBean.register}</from-action>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>
