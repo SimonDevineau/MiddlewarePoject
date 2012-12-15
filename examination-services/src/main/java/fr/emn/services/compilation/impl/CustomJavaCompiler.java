@@ -27,7 +27,7 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 	public void setFileManager(ClassFileManager fileManager) {
 		this.fileManager = fileManager;
 	}
-
+//TODO mesurer le temps de compilation
 	@Override
 	public Result compile(List<InMemoryJavaFile> sourceFiles) {
 
@@ -48,41 +48,46 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 
 		return res;
 	}
-
+//TODO mesurer le temps d'exécution
 	@Override
-	public String execute(String className, String functionName, Object[] args) {
-
+	public Result execute(String className, String functionName, Object[] args) {
+		Result toReturn = new Result();
+		Object executionResult = null;
 		ClassLoader classLoader = fileManager.getClassLoader(null);
-		PrintStream stdOut = System.out;
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			Class<?> loadedClass = classLoader.loadClass(className);
 			
-			Method method = loadedClass.getMethod("main",
-					String[].class);
+			Method method = loadedClass.getMethod(functionName,
+					(Class<?>[]) null);
 
-			PrintStream ps = new PrintStream(baos);
-
-			System.setOut(ps);
-			method.invoke(null, args);
-			System.out.flush();
-
+			
+			executionResult = method.invoke(null, args);
+			toReturn.setSucceed(true);
+			toReturn.setOutput(executionResult.toString());
+			
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} catch (SecurityException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		} finally {
-			System.setOut(stdOut);
+			throw new RuntimeException();
+		} catch(Exception e) {
+			toReturn.setError(e.getMessage());
+			toReturn.setSucceed(false);
 		}
-		return baos.toString();
+		return toReturn;
 	}
 
 	public static void main(String[] args) {

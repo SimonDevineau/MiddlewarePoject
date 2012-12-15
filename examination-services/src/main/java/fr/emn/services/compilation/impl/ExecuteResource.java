@@ -16,26 +16,24 @@ public final class ExecuteResource {
 	@POST
 	@Produces(MediaType.TEXT_XML)
 	public static GlobalResult execute(@FormParam("fileName") String fileName,
-			@FormParam("sourceCode") String sourceCode) {
-		
+			@FormParam("sourceCode") String sourceCode,
+			@FormParam("function") String function) {
+
 		String className = fileName.replace(".java", "");
-		
+
 		InMemoryJavaFile file = new InMemoryJavaFile(className, sourceCode);
 		List<InMemoryJavaFile> files = new ArrayList<InMemoryJavaFile>();
 		files.add(file);
-		
 
 		CustomJavaCompiler compiler = new CustomJavaCompiler();
 
 		GlobalResult globalResult = new GlobalResult();
-		
+
 		globalResult.setCompilation(compiler.compile(files));
 		if (globalResult.getCompilation().isSucceed()) {
-			String[] params = new String[0];
-			globalResult.getExecution()
-					.setOutput(
-							compiler.execute(className, "main",
-									new Object[] { params }));
+			// String[] params = new String[0];
+			globalResult.setExecution(compiler.execute(className, function,
+					null));
 		}
 		return globalResult;
 	}

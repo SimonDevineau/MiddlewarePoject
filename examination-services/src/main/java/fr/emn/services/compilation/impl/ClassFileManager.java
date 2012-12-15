@@ -9,7 +9,7 @@ import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
 
-
+//TODO implémenter la possibilité d'avoir plus d'une classe en mémoire
 public class ClassFileManager extends
 		ForwardingJavaFileManager<JavaFileManager> {
 	/**

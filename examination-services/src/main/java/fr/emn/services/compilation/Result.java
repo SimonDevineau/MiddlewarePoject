@@ -17,7 +17,8 @@ public class Result {
 
 	@XmlElement
 	private int timeElapsed;
-
+	
+	@XmlElement
 	private boolean succeed;
 
 	public boolean isSucceed() {
