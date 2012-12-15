@@ -18,94 +18,96 @@ import fr.emn.examination.persistence.Factory;
  * 
  */
 public class Register implements Serializable {
-    
+
     /**
      * long
      */
     private static final long serialVersionUID = -1428734022613190652L;
-    
+
     private String            login;
-    
+
     private String            password;
-    
+
     private String            confirmPassword;
-    
+
     /**
      * 
      */
     public Register() {
-    	super();
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if(session != null){
-            session.invalidate();
-        }
+	super();
+	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+	        .getExternalContext().getSession(false);
+	if (session != null) {
+	    session.invalidate();
+	}
     }
-    
+
     /**
      * @param password
      * @param role
      * @param userName
      */
     public Register(String password, String confirmPassword, String login) {
-        this();
-        this.login = login;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
+	this();
+	this.login = login;
+	this.password = password;
+	this.confirmPassword = confirmPassword;
     }
-    
+
     /**
      * @return the username
      */
     public String getLogin() {
-        return this.login;
+	return this.login;
     }
-    
+
     /**
      * @return the password
      */
     public String getPassword() {
-        return this.password;
+	return this.password;
     }
-    
+
     /**
      * @return the confirmPassword
      */
     public String getConfirmPassword() {
-        return this.confirmPassword;
+	return this.confirmPassword;
     }
-    
+
     /**
      * @param userName
      *            the userName to set
      */
     public void setLogin(String login) {
-        this.login = login;
+	this.login = login;
     }
-    
+
     /**
      * @param password
      *            the password to set
      */
     public void setPassword(String password) {
-        this.password = password;
+	this.password = password;
     }
-    
+
     /**
      * @param confirmPassword
      *            the confirmPassword to set
      */
     public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+	this.confirmPassword = confirmPassword;
     }
-    
-    public String register(){
-    	User userWithSameLogin = Factory.getUserDAO().retrieveByKey(getLogin());
-    	if(userWithSameLogin==null&&getPassword().equals(getConfirmPassword())) {
-        	User newUser = new User(getPassword(),Role.STUDENT,getLogin());
-        	Factory.getUserDAO().create(newUser);
-    		return "success";
-    	}
-    	return "failure";
+
+    public String register() {
+	User userWithSameLogin = Factory.getUserDAO().retrieveByKey(getLogin());
+	if (userWithSameLogin == null
+	        && getPassword().equals(getConfirmPassword())) {
+	    User newUser = new User(getPassword(), Role.STUDENT, getLogin());
+	    Factory.getUserDAO().create(newUser);
+	    return "success";
+	}
+	return "failure";
     }
-    
+
 }

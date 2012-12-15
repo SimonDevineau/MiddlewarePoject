@@ -14,21 +14,22 @@ import javax.servlet.http.HttpSession;
  * 
  */
 public class Logout implements Serializable {
-    
+
     /**
      * long
      */
     private static final long serialVersionUID = -1428734022613190652L;
-    
+
     /**
      * 
      */
     public Logout() {
     }
-    
-    public String logout(){
-    	HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.invalidate();
-        return "logout";
+
+    public String logout() {
+	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+	        .getExternalContext().getSession(false);
+	session.invalidate();
+	return "logout";
     }
 }

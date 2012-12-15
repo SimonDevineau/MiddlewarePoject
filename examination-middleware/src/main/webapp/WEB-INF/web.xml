@@ -20,7 +20,7 @@
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/restricted/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- JSF mapping -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -45,5 +45,5 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>
