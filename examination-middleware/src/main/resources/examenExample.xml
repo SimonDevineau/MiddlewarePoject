@@ -15,7 +15,7 @@
 				<consigne>Définir une fonction T soustraction(T x, T y) calculant la soustraction de y à x (autrement dit, x moins y). 
 				On veillera à donner au paramètre T le majorant le plus grand possible (relativement à la relation de sous-typage), 
 				afin de rendre la fonction soustraction la plus générale possible.</consigne>
-				<code>
+				<codeOuTexte>
 					<segment id="1">
 						<typeCorrection>syntaxeSeulement</typeCorrection>
 						<correction>public static &lt;T extends GroupeAdd
@@ -25,7 +25,7 @@
 						<typeCorrection>testCompilationPuisExecution</typeCorrection>
 						<correction>soustraction(2, 3).equals(-1) &#38;&#38; soustraction(5,4).equals(1)</correction>
 					</segment>
-				</code>
+				</codeOuTexte>
 				<protocole nbPoints="2" nbEssais="1"></protocole>
 			</question>
 			<question id="2">
