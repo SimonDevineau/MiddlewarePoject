@@ -23,7 +23,7 @@
 					</segment>
 					<segment id="2">
 						<typeCorrection>testCompilationPuisExecution</typeCorrection>
-						<correction>soustraction(2, 3).equals(-1) &#38;&#38; soustraction(5,4).equals(1)</correction>
+						<correction>validationQ1S2()</correction>
 					</segment>
 				</codeOuTexte>
 				<protocole nbPoints="2" nbEssais="1"></protocole>
