@@ -1,6 +1,16 @@
 <xs:schema attributeFormDefault="qualified"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:include schemaLocation=""></xs:include>
+	
+	<!-- Un rappel sur les caractères spéciaux en xml.
+	Ces  caractères nepeut pas être utilisés, il faut donc les remplacer par leur notations HTML.
+	Voici la liste des principaux caractères à éviter et leur équivalent HTML:
+	'&' -> "&#38;"
+	'<' -> "&#60;"
+	'>' -> "&#62;"
+	' " ' (double quotes) -> "&#34;"
+	'&' (simple quote) -> "&#39;"
+	-->
 	<xs:element name="examen">
 		<xs:complexType>
 			<xs:sequence>
@@ -69,16 +79,16 @@
 																		<xs:complexType>
 																			<xs:sequence>
 																				<xs:element
-																					name="typeCorrection" maxOccurs="unbounded"
+																					name="typeCorrection" maxOccurs="1"
 																					minOccurs="1">
 																					<xs:simpleType>
 																						<xs:restriction
 																							base="xs:string">
 																							<xs:enumeration
-																								value="syntaxe">
+																								value="syntaxeSeulement">
 																							</xs:enumeration>
 																							<xs:enumeration
-																								value="test">
+																								value="testCompilationPuisExecution">
 																							</xs:enumeration>
 																						</xs:restriction>
 																					</xs:simpleType>

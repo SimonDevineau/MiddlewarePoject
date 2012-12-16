@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="examen_Schema_Validation.xsd">
+	xsi:noNamespaceSchemaLocation="xmlSchemaExamen.xsd">
 	<information>
 		<enTete>
 			<titre>titre</titre>
@@ -17,14 +17,13 @@
 				afin de rendre la fonction soustraction la plus générale possible.</consigne>
 				<code>
 					<segment id="1">
-						<typeCorrection>syntaxe</typeCorrection>
-						<typeCorrection>test</typeCorrection>
+						<typeCorrection>syntaxeSeulement</typeCorrection>
 						<correction>public static &lt;T extends GroupeAdd
 							&lt;T&gt;&gt; T soustraction(T x, T y)</correction>
 					</segment>
 					<segment id="2">
-						<typeCorrection>test</typeCorrection>
-						<correction>return x.somme(y.oppose());</correction>
+						<typeCorrection>testCompilationPuisExecution</typeCorrection>
+						<correction>soustraction(2, 3).equals(-1) &#38;&#38; soustraction(5,4).equals(1)</correction>
 					</segment>
 				</code>
 				<protocole nbPoints="2" nbEssais="1"></protocole>
