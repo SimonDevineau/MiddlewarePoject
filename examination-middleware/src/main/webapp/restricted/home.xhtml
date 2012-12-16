@@ -4,13 +4,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" > 
-
-<h:head></h:head> 
+		
+<h:head><script type="text/javascript" src="includes/menu.js"></script></h:head> 
 <body> 
 
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="/includes/header.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="/includes/menu.xhtml" />
 		</ui:insert>
 	</div>
 <!-- Code de la partie client -->
