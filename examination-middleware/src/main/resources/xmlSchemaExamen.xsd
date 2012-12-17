@@ -28,6 +28,8 @@
 											maxOccurs="1" />
 										<xs:element type="xs:string" name="auteur"
 											minOccurs="0" />
+										<xs:element type="xs:string" name="source"
+											minOccurs="0" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>

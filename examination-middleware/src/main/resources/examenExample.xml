@@ -4,6 +4,7 @@
 	<information>
 		<enTete>
 			<titre>titre</titre>
+			<source>Test.java</source>
 		</enTete>
 	</information>
 	<enonce>
