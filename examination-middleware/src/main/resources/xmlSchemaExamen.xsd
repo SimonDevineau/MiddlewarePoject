@@ -10,6 +10,19 @@
 	'>' -> "&#62;"
 	' " ' (double quotes) -> "&#34;"
 	'&' (simple quote) -> "&#39;"
+	
+	Explication du schéma xsd:
+	Seule la partie question va être éxpliquée, si toutefois vous aviez plus de question, n'hésitez pas.
+	A l'intérieur de la balise question vous retrouvez obligatoirement:
+	-une consigne
+	-un type de question (soit caseACocher, soit question à choix mutliples, soit une question contenant du code ou une réponse texte)
+	-un protocole définissant la façon dont l'élève va être évalué
+	
+	Si la question est de type codeOuTexte, il y a plusieurs segments, c'est à dire que la question peut être séparée en plusieurs petites parties de texte ou de code. 
+	Pour chaque segment, il y a deux types de correction possibles, mais une seul doit être choisi par segment:
+	-Syntaxique, qui vérifiera que la réponse a (à un pourcentage) prêt la bonne syntaxe.
+	-testCompilationPuisExecution, qui compilera puis executera le code en faisant appel à une méthode de test définit dans le fichier source et dont le nom est précisé entre les balises corrections 
+	
 	-->
 	<xs:element name="examen">
 		<xs:complexType>
@@ -29,7 +42,7 @@
 										<xs:element type="xs:string" name="auteur"
 											minOccurs="0" />
 										<xs:element type="xs:string" name="source"
-											minOccurs="0" />
+											minOccurs="0" /><!-- Le nom du fichier source (fichier ou l'on trouvera le code d'évalutation -->
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
