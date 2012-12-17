@@ -9,13 +9,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.emn.services.compilation.GlobalResult;
-
 @Path("/execute")
 public final class ExecuteResource {
 	@POST
 	@Produces(MediaType.TEXT_XML)
-	public static GlobalResult execute(@FormParam("fileName") String fileName,
+	public static ExecuteResult execute(@FormParam("fileName") String fileName,
 			@FormParam("sourceCode") String sourceCode,
 			@FormParam("function") String function) {
 
@@ -27,15 +25,13 @@ public final class ExecuteResource {
 
 		CustomJavaCompiler compiler = new CustomJavaCompiler();
 
-		GlobalResult globalResult = new GlobalResult();
+		ExecuteResult executeResult = new ExecuteResult();
 
-		globalResult.setCompilation(compiler.compile(files));
-		if (globalResult.getCompilation().isSucceed()) {
-			// String[] params = new String[0];
-			globalResult.setExecution(compiler.execute(className, function,
-					null));
+		if (compiler.compile(files).hasSucceeded() == true) {
+			executeResult = compiler.execute(className, function,
+					null);
 		}
-		return globalResult;
+		return executeResult;
 	}
 
 }

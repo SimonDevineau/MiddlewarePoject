@@ -9,36 +9,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Result {
 
-	@XmlElement
-	private String output = "";
+	
 
 	@XmlElement
 	private String error = "";
-
-	@XmlElement
-	private int timeElapsed;
 	
 	@XmlElement
-	private boolean succeed;
+	private boolean succeed = false;
+	
 
-	public boolean isSucceed() {
+	public boolean hasSucceeded() {
 		return succeed;
 	}
 
-	public void setSucceed(boolean succeed) {
+	public void setSucceeded(boolean succeed) {
 		this.succeed = succeed;
 	}
 
 	public Result() {
 		super();
-	}
-
-	public String getOutput() {
-		return output;
-	}
-
-	public void setOutput(String output) {
-		this.output = output;
 	}
 
 	public String getError() {
@@ -47,14 +36,6 @@ public class Result {
 
 	public void setError(String error) {
 		this.error = error;
-	}
-
-	public int getTimeElapsed() {
-		return timeElapsed;
-	}
-
-	public void setTimeElapsed(int timeElapsed) {
-		this.timeElapsed = timeElapsed;
 	}
 
 }

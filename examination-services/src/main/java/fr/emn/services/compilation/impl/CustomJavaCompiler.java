@@ -1,9 +1,6 @@
 package fr.emn.services.compilation.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.io.StringWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,9 @@ import fr.emn.services.compilation.Compiler;
 import fr.emn.services.compilation.Result;
 
 public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
-
+	
+	private static final int MAX_EXECUTION_TIME = 10000;
+	
 	private ClassFileManager fileManager;
 
 	public ClassFileManager getFileManager() {
@@ -27,7 +26,7 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 	public void setFileManager(ClassFileManager fileManager) {
 		this.fileManager = fileManager;
 	}
-//TODO mesurer le temps de compilation
+	
 	@Override
 	public Result compile(List<InMemoryJavaFile> sourceFiles) {
 
@@ -41,30 +40,38 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 				null, null, sourceFiles);
 
 		Result res = new Result();
-		res.setSucceed(cTask.call());
+		res.setSucceeded(cTask.call());
 
 
-		res.setOutput(writer.toString());
+		res.setError(writer.toString());
 
 		return res;
 	}
-//TODO mesurer le temps d'exécution
+
 	@Override
-	public Result execute(String className, String functionName, Object[] args) {
-		Result toReturn = new Result();
-		Object executionResult = null;
+	public ExecuteResult execute(String className, String functionName, Object[] args) {
+		ExecuteResult toReturn = new ExecuteResult();
 		ClassLoader classLoader = fileManager.getClassLoader(null);
 		try {
 			Class<?> loadedClass = classLoader.loadClass(className);
 			
 			Method method = loadedClass.getMethod(functionName,
 					(Class<?>[]) null);
-
 			
-			executionResult = method.invoke(null, args);
-			toReturn.setSucceed(true);
-			toReturn.setOutput(executionResult.toString());
+			Thread exec = new Thread(new RunnableExecution(toReturn, method, args));
 			
+			long start, current;
+			current = start = System.currentTimeMillis();
+			exec.start();
+			while(exec.isAlive() && ((current = System.currentTimeMillis()) - start) < MAX_EXECUTION_TIME);
+			
+			if (exec.isAlive()) {
+				exec.interrupt();
+				toReturn.setSucceeded(false);
+			}
+			else {
+				toReturn.setTimeElapsed((int)(current - start));
+			}
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 			throw new RuntimeException();
@@ -74,18 +81,12 @@ public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new RuntimeException();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			throw new RuntimeException();
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 			throw new RuntimeException();
 		} catch(Exception e) {
 			toReturn.setError(e.getMessage());
-			toReturn.setSucceed(false);
+			toReturn.setSucceeded(false);
 		}
 		return toReturn;
 	}
