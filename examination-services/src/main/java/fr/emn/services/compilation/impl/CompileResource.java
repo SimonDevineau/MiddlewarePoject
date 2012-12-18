@@ -17,7 +17,7 @@ public final class CompileResource {
 	
 	@POST
 	@Produces(MediaType.TEXT_XML)
-	public static Result compile(@FormParam("fileName") String fileName,
+	public static Result compile(@FormParam("className") String fileName,
 			@FormParam("sourceCode") String sourceCode) {
 		
 		String className = fileName.replace(".java", "");

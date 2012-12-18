@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 public final class ExecuteResource {
 	@POST
 	@Produces(MediaType.TEXT_XML)
-	public static ExecuteResult execute(@FormParam("fileName") String fileName,
+	public static ExecuteResult execute(@FormParam("className") String fileName,
 			@FormParam("sourceCode") String sourceCode,
 			@FormParam("function") String function) {
 
