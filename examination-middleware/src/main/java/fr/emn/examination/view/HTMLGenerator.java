@@ -107,9 +107,8 @@ public class HTMLGenerator {
 	public String questionToHTML(Question q) {
 		String html = String.format("<p:tab title=\"%s\">\n"  
         +"<h:panelGrid columns=\"2\" cellpadding=\"10\">\n"  
-        +"<h:outputText>",q.getTitle());
+        +"<h:outputText/>",q.getTitle());
 		html+=q.getConsigne();
-		html+="</h:outputText>\n";
 		html+=caseacocherToHTML(q.getCaseacocher());
 		html+="</h:panelGrid>\n  </p:tab>\n  ";
 		return html;
