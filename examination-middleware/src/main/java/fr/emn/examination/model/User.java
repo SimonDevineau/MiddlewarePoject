@@ -5,15 +5,9 @@
 package fr.emn.examination.model;
 
 import java.io.Serializable;
-import java.security.Principal;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import fr.emn.examination.persistence.Factory;
 
 /**
  * @author Pierre Reliquet

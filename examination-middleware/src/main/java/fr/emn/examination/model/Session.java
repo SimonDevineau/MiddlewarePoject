@@ -11,8 +11,6 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.emn.examination.persistence.Factory;
-
 /**
  * @author Cedric Nisio
  * 
