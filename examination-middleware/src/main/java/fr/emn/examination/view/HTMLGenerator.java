@@ -1,5 +1,8 @@
 package fr.emn.examination.view;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import fr.emn.examination.model.examen.Case;
@@ -22,17 +25,25 @@ public class HTMLGenerator {
 	}
 
 	public String examenToHTML() {
-		String corpsPage = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""
-				+ "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
-				+ "<html xmlns=\"http://www.w3.org/1999/xhtml\""
-				+ "xmlns:h=\"http://java.sun.com/jsf/html\""
-				+ "xmlns:f=\"http://java.sun.com/jsf/core\""
-				+ "xmlns:ui=\"http://java.sun.com/jsf/facelets\""
-				+ "xmlns:p=\"http://primefaces.org/ui\">"
+		String corpsPage = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "
+				+ "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> "
+				+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" "
+				+ "xmlns:h=\"http://java.sun.com/jsf/html\" "
+				+ "xmlns:f=\"http://java.sun.com/jsf/core\" "
+				+ "xmlns:ui=\"http://java.sun.com/jsf/facelets\" "
+				+ "xmlns:p=\"http://primefaces.org/ui\"> "
 				+ "<h:head></h:head><body>";
 		corpsPage += enonceToHTML(exam.getEnonce());
 		corpsPage += enteteToHTML(exam.getInformation().getEnTete());
 		corpsPage += "</body></html>";
+		try {
+			FileWriter enonce = new FileWriter("src/main/webapp/htmlGenerated.xhtml", false);
+			enonce.write(corpsPage);
+			enonce.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return (corpsPage);
 	}
 
@@ -59,7 +70,7 @@ public class HTMLGenerator {
 		return html;
 	}
 
-	public String InformationToHTML(Information inf) {
+	public String informationToHTML(Information inf) {
 		String html = "";
 		html += destinationToHTML(inf.getDestination());
 		html += String
@@ -75,15 +86,15 @@ public class HTMLGenerator {
 	public String caseToHTML(Case c) {
 		String html = "";
 		html += String.format(
-				"<input type=\"radio\" id=\"%d\" value=\"%s\"> %s<br>",
+				"<input type=\"radio\" name=\"middleware\" id=\"%d\" value=\"%s\"> %s</input><br/>",
 				c.getId(), c.getValue(), c.getValue());
 		return html;
 	}
 
 	public String caseacocherToHTML(Caseacocher c) {
 		String html = "";
-		html += "<form name=\"formulaire\" action=\"http://www.mydomain.com/myformhandler.cgi"
-				+ " method=\"POST\"><div align=\"center\"><br>";
+		html += "<form name=\"formulaire\" action=\"http://www.mydomain.com/myformhandler.cgi\""
+				+ " method=\"POST\"><div align=\"center\"><br/>";
 		for (Case ca : c.get_case()) {
 			html += caseToHTML(ca);
 		}
@@ -93,14 +104,19 @@ public class HTMLGenerator {
 
 	// TODO
 	public String questionToHTML(Question q) {
-
-		return caseacocherToHTML(q.getCaseacocher());
+		String html = String.format("<p:tab title=\"%s\">"  
+        +"<h:panelGrid columns=\"2\" cellpadding=\"10\">"  
+        +"<h:outputText value=\"",q.getCodeOuTexte().toString());
+		html+=caseacocherToHTML(q.getCaseacocher());
+		html+="\"/> </h:panelGrid>  </p:tab>  ";
+		return html;
 	}
 
 	// TODO
 	public String exerciceToHTML(List<Exercice> list) {
-
-		return questionToHTML(list.get(0).getQuestion().get(0));
+		String html = "<p:accordionPanel multiple= \"true\">";
+		html += questionToHTML(list.get(0).getQuestion().get(0));
+		return html + "</p:accordionPanel>";
 	}
 
 	// TODO
