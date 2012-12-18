@@ -95,11 +95,11 @@ public class HTMLGenerator {
 	public String caseacocherToHTML(Caseacocher c) {
 		String html = "";
 		html += "<form name=\"formulaire\" action=\"http://www.mydomain.com/myformhandler.cgi\""
-				+ " method=\"POST\"><div align=\"center\"><br/>\n";
+				+ " method=\"POST\">\n<div align=\"center\"><br/>\n";
 		for (Case ca : c.get_case()) {
 			html += caseToHTML(ca);
 		}
-		html += "</div></form>\n";
+		html += "</div>\n</form>\n";
 		return html;
 	}
 
@@ -118,13 +118,14 @@ public class HTMLGenerator {
 	// TODO
 	public String exerciceToHTML(List<Exercice> list) {
 		String html = "<p:accordionPanel multiple= \"true\">\n";
-		html += questionToHTML(list.get(0).getQuestion().get(0))+"\n";
+		for(Exercice e : list)
+			for(Question q : e.getQuestion())
+				html+= questionToHTML(q)+"\n";
 		return html + "</p:accordionPanel>\n";
 	}
 
 	// TODO
 	public String enonceToHTML(Enonce e) {
-
 		return exerciceToHTML(e.getExercice());
 	}
 

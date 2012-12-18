@@ -78,18 +78,30 @@ public class MockExam {
 	}
 
 	private List<Question> createQuestions() {
-		BigInteger id = new BigInteger("20");
-		String consigne = "Dans cette question Q1, vous devez implémenter une belle page HTML";
+		//Question 1
+		BigInteger id1 = new BigInteger("20");
+		String consigne1 = "Dans cette question Q1, vous devez implémenter une belle page HTML";
 		String titleQ1 = "Titre de la question Q1";
-		CodeOuTexte codeOuTexte;
-		Caseacocher caseacocher;
-		Protocole protocole = new Protocole("value", "3 essais", "1.0",
+		CodeOuTexte codeOuTexte1;
+		Caseacocher caseacocher1;
+		Protocole protocole1 = new Protocole("value", "3 essais", "1.0",
 				"20 min", "18 points");
-		Question q1 = new Question(consigne, null, createCaseACaseacocher(),
-				null, protocole, id, titleQ1);
+		Question q1 = new Question(consigne1, null, createCaseACaseacocher(),
+				null, protocole1, id1, titleQ1);
+		//Question 2
+		BigInteger id2 = new BigInteger("40");
+		String consigne2 = "Dans cette question Q2, vous devez vérifier que ça marche";
+		String titleQ2 = "Titre de la question Q2";
+		CodeOuTexte codeOuTexte2;
+		Caseacocher caseacocher2;
+		Protocole protocole2 = new Protocole("value", "2 essais", "1.0",
+				"15 min", "5 points");
+		Question q2 = new Question(consigne2, null, createCaseACaseacocher(),
+				null, protocole2, id2, titleQ2);
 
 		List<Question> questions = new ArrayList<Question>();
 		questions.add(q1);
+		questions.add(q2);
 		return questions;
 	}
 }
