@@ -1,0 +1,9 @@
+*~
+.classpath
+target
+.DS_Store
+.faces-config.xml.jsfdia
+.settings
+MANIFEST.MF
+.idea
+*.iml
