@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<center>
+			<h:messages errorClass="errorMessage" infoClass="infoMessage"
+				warnClass="warnMessage"></h:messages>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Username : "></p:outputLabel>
+				<p:inputText id="username" value="#{userBean.userName}"></p:inputText>
+
+				<p:outputLabel value="Password : "></p:outputLabel>
+				<p:password id="password" value="#{userBean.password}"></p:password> 
+
+				<p:commandButton value="Submit" action="#{userBean.login}"
+					type="submit"></p:commandButton>
+				<p:commandButton value="Clear" type="reset"></p:commandButton>
+
+				<p:commandLink value="Register" action="Registration.xhtml"></p:commandLink>
+				<p:commandLink value="Forgot Your Password?" action="RetrievingPassword.xhtml"></p:commandLink>
+			</h:panelGrid>
+		</center>
+	</h:form>
+
+
+</body>
+</html>
