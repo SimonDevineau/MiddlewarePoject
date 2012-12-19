@@ -2,7 +2,6 @@ package fr.emn.examination.view;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
 
 import fr.emn.examination.model.examen.Examen;
@@ -11,6 +10,9 @@ import fr.emn.examination.model.examen.Examen.Enonce.Exercice;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher.Case;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMultiples;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.CodeOuTexte;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.CodeOuTexte.Segment;
 import fr.emn.examination.model.examen.Examen.Information;
 import fr.emn.examination.model.examen.Examen.Information.Destination;
 import fr.emn.examination.model.examen.Examen.Information.EnTete;
@@ -82,40 +84,61 @@ public class HTMLGenerator {
 	 */
 	public String caseToHTML(Case c) {
 		String html = "";
-		html += String
-				.format("<input type=\"radio\" name=\"middleware\" id=\"%d\" value=\"%s\"> %s</input><br/>\n",
-						c.getId(), c.getValue(), c.getValue());
+		html += String.format(
+				Utils.loadFile(this.getClass()
+						.getResource("fragments/case.html").getFile()),
+				c.getId(), c.getValue(), c.getValue());
 		return html;
 	}
 
 	public String caseacocherToHTML(Caseacocher c) {
 		String html = "";
-		html += "<form name=\"formulaire\" action=\"http://www.mydomain.com/myformhandler.cgi\""
-				+ " method=\"POST\">\n<div align=\"center\"><br/>\n";
-		for (Case ca : c.getCase()) {
-			html += caseToHTML(ca);
+		if (c != null && c.getCase() != null) {
+			html += Utils.loadFile(this.getClass()
+					.getResource("fragments/caseACocher.html").getFile());
+			for (Case ca : c.getCase()) {
+				html += caseToHTML(ca);
+			}
+
+			html += Utils.loadFile(this.getClass()
+					.getResource("fragments/submit.html").getFile());
 		}
-		html += "</div>\n</form>\n";
 		return html;
 	}
 
 	// TODO
-	public String questionToHTML(Question q) {
-		String html = String.format("<p:tab title=\"%s\">\n"
-				+ "<h:panelGrid columns=\"2\" cellpadding=\"10\">\n"
-				+ "<h:outputText/>", q.getTitle());
-		html += q.getConsigne();
-		html += caseacocherToHTML(q.getCaseacocher());
-		html += "</h:panelGrid>\n  </p:tab>\n  ";
+	public String questionToHTML(Question q, String qNumber) {
+		String html = "";
+		if (q != null) {
+			html = String.format(
+					Utils.loadFile(this.getClass()
+							.getResource("fragments/question.html").getFile()),
+					qNumber);
+			html += q.getConsigne()+"<br />";
+
+			if (q.getCaseacocher() != null) {
+				html += caseacocherToHTML(q.getCaseacocher());
+			} else if (q.getChoixMultiples() != null) {
+				html += choixMultiplesToHTML(q.getChoixMultiples());
+			} else if (q.getCodeOuTexte() != null) {
+				html += codeOuTexteToHTML(q.getCodeOuTexte());
+			}
+			html += "</h:panelGrid>\n  </p:tab>\n  ";
+		}
 		return html;
 	}
 
 	// TODO
 	public String exerciceToHTML(List<Exercice> list) {
 		String html = "<p:accordionPanel multiple= \"true\">\n";
-		for (Exercice e : list)
-			for (Question q : e.getQuestion())
-				html += questionToHTML(q) + "\n";
+		String qNumber = "";
+		for (int indexExo = 0; indexExo < list.size(); indexExo++) {
+			for (int i = 0; i < list.get(indexExo).getQuestion().size(); i++) {
+				qNumber = "Question " + (indexExo + 1) + "." + (i + 1);
+				html += questionToHTML(list.get(indexExo).getQuestion().get(i),
+						qNumber) + "\n";
+			}
+		}
 		return html + "</p:accordionPanel>\n";
 	}
 
@@ -165,18 +188,30 @@ public class HTMLGenerator {
 		return html;
 	}
 
-	public String codeOuTexteToHTML() {
+	public String codeOuTexteToHTML(CodeOuTexte codeOuTexte) {
 		String html = "";
+		if (codeOuTexte != null && codeOuTexte.getSegment() != null) {
+			for (Segment s : codeOuTexte.getSegment()) {
+				html += segmentToHTML(s);
+			}
+		}
 		return html;
 	}
 
-	public String choixMultiplesToHTML() {
+	public String choixMultiplesToHTML(ChoixMultiples choixMultiples) {
 		String html = "";
+		if (choixMultiples != null && choixMultiples.getChoix() != null) {
+
+		}
 		return html;
 	}
 
-	public String segmentToHTML() {
+	public String segmentToHTML(Segment s) {
 		String html = "";
+		if (s != null) {
+			html += Utils.loadFile(this.getClass()
+					.getResource("fragments/segment.html").getFile());
+		}
 		return html;
 	}
 
