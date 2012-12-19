@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.model.Role;
 import fr.emn.examination.model.User;
 import fr.emn.examination.persistence.Factory;
 
@@ -88,7 +89,8 @@ public class Login implements Serializable {
 	if (user != null && user.getPassword().equals(hashedPassword)) {
 	    Session.put("currentUser", user);
 	    Session.put("connected", true);
-	    return "success";
+	    return user.getRole().equals(Role.ADMINISTRATOR) ? "administrator"
+		    : "student";
 	}
 	FacesContext context = FacesContext.getCurrentInstance();
 

@@ -1,5 +1,5 @@
 /**
- * Part of the project : examination fr.emn.examination.util.LoginFiler.java
+ * Part of the project : examination fr.emn.examination..util.AdminFiler.java
  * Created
  * by : cedric
  */
@@ -17,11 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.model.Role;
+import fr.emn.examination.model.User;
+
 /**
  * @author Cedric Nisio
  * 
  */
-public class LoginFilter implements Filter {
+public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
@@ -30,14 +33,14 @@ public class LoginFilter implements Filter {
 	HttpServletRequest req = (HttpServletRequest) request;
 	HttpSession session = req.getSession();
 
-	if (session.getAttribute("currentUser") != null
-	        || req.getRequestURI().endsWith("login.xhtml")
-	        || req.getRequestURI().endsWith("register.xhtml")) {
+	User user = (User) session.getAttribute("currentUser");
+
+	if (user != null && user.getRole().equals(Role.ADMINISTRATOR)) {
 	    chain.doFilter(request, response);
 	}
 	else {
 	    HttpServletResponse res = (HttpServletResponse) response;
-	    res.sendRedirect(req.getContextPath() + "/login.xhtml");
+	    res.sendRedirect(req.getContextPath() + "/restrictedArea.xhtml");
 	    return;
 	}
 
