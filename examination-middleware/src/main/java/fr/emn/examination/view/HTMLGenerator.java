@@ -2,6 +2,7 @@ package fr.emn.examination.view;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 import fr.emn.examination.model.examen.Examen;
@@ -29,7 +30,8 @@ public class HTMLGenerator {
 
 		corpsPage += enteteToHTML(exam.getInformation().getEnTete());
 		corpsPage += enonceToHTML(exam.getEnonce());
-		corpsPage += "</body>\n</html> \n";
+		corpsPage += Utils.loadFile(this.getClass()
+				.getResource("fragments/enFile.html").getFile());
 		try {
 			FileWriter enonce = new FileWriter(
 					"src/main/webapp/htmlGenerated.xhtml", false);
@@ -49,10 +51,10 @@ public class HTMLGenerator {
 	public String enteteToHTML(EnTete et) {
 		// titre, objet, date, auteur, source
 		String html = "";
-		html += String
-				.format("<h3>Titre: %s</h3>\n<h4>Objet: %s</h4>\n<h5>Date: %s</h5>\n<p>Auteur: %s</p>\n<p>Source: %s</p>\n",
-						et.getTitre(), et.getObjet(), et.getDate(),
-						et.getAuteur(), et.getSource());
+		html += String.format(
+				this.getClass().getResource("fragments/header.html").getFile(),
+				et.getTitre(), et.getObjet(), et.getDate(), et.getAuteur(),
+				et.getSource());
 
 		return html;
 	}
