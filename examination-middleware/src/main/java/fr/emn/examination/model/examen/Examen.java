@@ -212,6 +212,10 @@ public class Examen {
 		this.conclusion = conclusion;
 	}
 
+	public Examen() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@XmlElement(required = true)
     protected Information information;
     protected String preambule;

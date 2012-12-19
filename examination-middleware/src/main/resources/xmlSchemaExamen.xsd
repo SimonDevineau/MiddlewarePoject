@@ -33,52 +33,54 @@
 							<xs:element name="enTete">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="titre"
-											minOccurs="1" maxOccurs="1" />
-										<xs:element type="xs:string" name="objet"
-											minOccurs="0" />
-										<xs:element type="xs:string" name="date" minOccurs="0"
-											maxOccurs="1" />
-										<xs:element type="xs:string" name="auteur"
-											minOccurs="0" />
-										<xs:element type="xs:string" name="source"
-											minOccurs="0" /><!-- Le nom du fichier source (fichier ou l'on trouvera le code d'évalutation -->
+										<xs:element type="xs:string"
+											name="titre" minOccurs="1" maxOccurs="1" />
+										<xs:element type="xs:string"
+											name="objet" minOccurs="0" />
+										<xs:element type="xs:string"
+											name="date" minOccurs="0" maxOccurs="1" />
+										<xs:element type="xs:string"
+											name="auteur" minOccurs="0" />
+										<xs:element type="xs:string"
+											name="source" minOccurs="0" /><!-- Le nom du fichier source (fichier ou l'on trouvera le code d'évalutation -->
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="destination" minOccurs="0">
+							<xs:element name="destination"
+								minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="UV" minOccurs="0"
-											maxOccurs="1" />
-										<xs:element type="xs:string" name="module"
-											minOccurs="0" maxOccurs="1" />
-										<xs:element type="xs:string" name="coefficient"
-											minOccurs="0" maxOccurs="1" />
+										<xs:element type="xs:string"
+											name="UV" minOccurs="0" maxOccurs="1" />
+										<xs:element type="xs:string"
+											name="module" minOccurs="0" maxOccurs="1" />
+										<xs:element type="xs:string"
+											name="coefficient" minOccurs="0" maxOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element type="xs:string" name="version" minOccurs="0"
-								maxOccurs="1" />
-							<xs:element type="xs:string" name="commentaires"
+							<xs:element type="xs:string" name="version"
 								minOccurs="0" maxOccurs="1" />
+							<xs:element type="xs:string"
+								name="commentaires" minOccurs="0" maxOccurs="1" />
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element type="xs:string" name="preambule" minOccurs="0"
-					maxOccurs="1" />
+				<xs:element type="xs:string" name="preambule"
+					minOccurs="0" maxOccurs="1" />
 				<xs:element type="xs:string" name="introduction"
 					minOccurs="0" maxOccurs="1" />
 				<xs:element name="enonce" minOccurs="1" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="exercice" minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="exercice" minOccurs="1"
+								maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element type="xs:string" name="introduction"
-											minOccurs="0" maxOccurs="1" />
-										<xs:element name="question" maxOccurs="unbounded"
-											minOccurs="1">
+										<xs:element type="xs:string"
+											name="introduction" minOccurs="0" maxOccurs="1" />
+										<xs:element name="question"
+											maxOccurs="unbounded" minOccurs="1">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element
@@ -171,21 +173,28 @@
 															</xs:complexType>
 														</xs:element>
 													</xs:choice>
-                                                    <xs:element name="protocole" minOccurs="1" maxOccurs="1">
+													<xs:element
+														name="protocole" minOccurs="1" maxOccurs="1">
 														<xs:complexType>
 															<xs:simpleContent>
-																<xs:extension base="xs:string">
-																	<xs:attribute type="xs:string" name="nbEssais" use="optional" default="1" />
-																	<xs:attribute type="xs:string" name="version" use="optional" />
-																	<xs:attribute type="xs:string" name="duree" use="optional" />
-																	<xs:attribute type="xs:string" name="nbPoints" use="required" />
+																<xs:extension
+																	base="xs:string">
+																	<xs:attribute
+																		type="xs:string" name="nbEssais" use="optional"
+																		default="1" />
+																	<xs:attribute
+																		type="xs:string" name="version" use="optional" />
+																	<xs:attribute
+																		type="xs:string" name="duree" use="optional" />
+																	<xs:attribute
+																		type="xs:string" name="nbPoints" use="required" />
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
-                                                </xs:sequence>
-												<xs:attribute
-													name="id" type="xs:positiveInteger" use="required">
+												</xs:sequence>
+												<xs:attribute name="id"
+													type="xs:positiveInteger" use="required">
 												</xs:attribute>
 												<xs:attribute
 													name="title" type="xs:string">
@@ -193,18 +202,23 @@
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute type="xs:string" name="title" />
-									<xs:attribute type="xs:positiveInteger" name="id"
-										use="required" />
-									<xs:attribute type="xs:string" name="langage" use="required" />
-									<xs:attribute type="xs:positiveInteger" name="coefficient" />
+									<xs:attribute type="xs:string"
+										name="title" />
+									<xs:attribute
+										type="xs:positiveInteger" name="id" use="required" />
+									<xs:attribute type="xs:string"
+										name="langage" use="required" />
+									<xs:attribute
+										type="xs:positiveInteger" name="coefficient" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element type="xs:string" name="conclusion" maxOccurs="1" minOccurs="0"/>
+				<xs:element type="xs:string" name="conclusion"
+					maxOccurs="1" minOccurs="0" />
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
 		</xs:complexType>
 	</xs:element>
 
