@@ -1,3 +1,5 @@
+package fr.emn.examination.view;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,9 +13,9 @@ public class JavaCode {
 	questionIds;
 	
 	public JavaCode() {
-		questions = new HashMap<>();
-		roughCode = new ArrayList<>();
-		questionIds = new ArrayList<>();
+		questions = new HashMap<String, CodeQuestion>();
+		roughCode = new ArrayList<String>();
+		questionIds = new ArrayList<String>();
 	}
 
 	public HashMap<String, CodeQuestion> getQuestions() {
