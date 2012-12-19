@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="xmlSchemaExamen.xsd">
+	xsi:noNamespaceSchemaLocation="xmlSchemaExamen.xsd" id="idBDD">
 	<information>
 		<enTete>
 			<titre>titre</titre>
@@ -12,7 +12,7 @@
 			<introduction>Dans un module de calculs, appelé Calculs,
 			on développe des fonctions génériques de calculs opérant sur les interfaces précédentes.
 			</introduction>
-			
+
 			<question id="1">
 				<consigne>Définir une fonction T soustraction(T x, T y) calculant la soustraction de y à x (autrement dit, x moins y). 
 				On veillera à donner au paramètre T le majorant le plus grand possible (relativement à la relation de sous-typage), 
@@ -47,6 +47,17 @@
 					<correction>1</correction>
 				</choixMultiples>
 				<protocole nbPoints="1"></protocole>
+			</question>
+		</exercice>
+		<exercice langage="Java" id="2">
+			<introduction>Introduction de l'expo 2</introduction>
+			<question id="1">
+				<consigne>Quel est le meilleur département?</consigne>
+				<caseacocher>
+					<case correction="true" id="2">Loire-Atlantique</case>
+					<case correction="true" id="1">Vendée</case>
+				</caseacocher>
+				<protocole nbPoints="2"></protocole>
 			</question>
 		</exercice>
 	</enonce>
