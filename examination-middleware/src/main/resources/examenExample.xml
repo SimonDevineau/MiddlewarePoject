@@ -14,39 +14,12 @@
 			</introduction>
 
 			<question id="1">
-				<consigne>Définir une fonction T soustraction(T x, T y) calculant la soustraction de y à x (autrement dit, x moins y). 
-				On veillera à donner au paramètre T le majorant le plus grand possible (relativement à la relation de sous-typage), 
-				afin de rendre la fonction soustraction la plus générale possible.</consigne>
-				<codeOuTexte>
-					<segment id="1">
-						<typeCorrection>syntaxeSeulement</typeCorrection>
-						<correction>public static &lt;T extends GroupeAdd
-							&lt;T&gt;&gt; T soustraction(T x, T y)</correction>
-					</segment>
-					<segment id="2">
-						<typeCorrection>testCompilationPuisExecution</typeCorrection>
-						<correction>validationQ1S2()</correction>
-					</segment>
-				</codeOuTexte>
-				<protocole nbPoints="2" nbEssais="1"></protocole>
-			</question>
-			<question id="2">
-				<consigne>Ceci est une question case à cocher, il y a donc plusieurs réponses possible, n'est ce pas?</consigne>
+				<consigne>Quel est le meilleur département?</consigne>
 				<caseacocher>
-					<case correction="true" id="1">Oui</case>
-					<case correction="false" id="2">Non</case>
-					<case correction="true" id="3">Evidement</case>
+					<case correction="true" id="2">Loire-Atlantique</case>
+					<case correction="true" id="1">Vendée</case>
 				</caseacocher>
 				<protocole nbPoints="2"></protocole>
-			</question>
-			<question id="3">
-				<consigne>Ceci est une question à choix mutliples, une seule réponse est donc possible, n'est ce pas?</consigne>
-				<choixMultiples>
-					<choix id="1">Oui</choix>
-					<choix id="2">Non</choix>
-					<correction>1</correction>
-				</choixMultiples>
-				<protocole nbPoints="1"></protocole>
 			</question>
 		</exercice>
 		<exercice langage="Java" id="2">

@@ -15,7 +15,7 @@ public class TestHTMLStudentView {
 		ExamenParser parser = new ExamenParser(); 
 		Examen mockExam = parser.get(pathFile);
 		HTMLGenerator htmlView = new HTMLGenerator(mockExam);
-		//System.out.println(htmlView.examenToHTML());
+		System.out.println(htmlView.examenToHTML());
 		GenericDAO<Examen> examenDao = Factory.getExamenDAO();
 		examenDao.create(mockExam);
 		System.out.println(""+examenDao.retrieveAll().size());

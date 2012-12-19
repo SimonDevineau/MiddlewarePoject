@@ -1,3 +1,5 @@
+package fr.emn.examination.view;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
