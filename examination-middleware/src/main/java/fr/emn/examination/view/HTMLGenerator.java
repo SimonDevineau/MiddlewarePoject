@@ -121,7 +121,67 @@ public class HTMLGenerator {
 
 	// TODO
 	public String enonceToHTML(Enonce e) {
-		return exerciceToHTML(e.getExercice());
+		if (e != null) {
+			return exerciceToHTML(e.getExercice());
+		} else {
+			return "There is a, error with the examen";
+		}
 	}
 
+	public String preambuleToHTML() {
+		String html = "";
+		if (exam.getPreambule() != null) {
+
+		}
+		return html;
+	}
+
+	public String introductionToHTML() {
+		String html = "";
+		if (exam.getIntroduction() != null) {
+
+		}
+		return html;
+	}
+
+	public String conclusionToHTML() {
+		String html = "";
+		return html;
+	}
+
+	public String versionToHTML() {
+		String html = "";
+		if (exam.getInformation().getVersion() != null) {
+
+		}
+		return html;
+	}
+
+	public String commentairesToHTML() {
+		String html = "";
+		if (exam.getInformation().getCommentaires() != null) {
+
+		}
+		return html;
+	}
+
+	public String codeOuTexteToHTML() {
+		String html = "";
+		return html;
+	}
+
+	public String choixMultiplesToHTML() {
+		String html = "";
+		return html;
+	}
+
+	public String segmentToHTML() {
+		String html = "";
+		return html;
+	}
+
+	public String choixToHTML() {
+		String html = "";
+		return html;
+	}
 }
