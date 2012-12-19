@@ -16,7 +16,7 @@ public class ExamenParser {
 	public ExamenParser() {
 		try {
 			JAXBContext jaxbContext = JAXBContext
-					.newInstance(ExamenParser.class);
+					.newInstance(Examen.class);
 			this.parser = jaxbContext.createUnmarshaller();
 
 		} catch (JAXBException e) {
