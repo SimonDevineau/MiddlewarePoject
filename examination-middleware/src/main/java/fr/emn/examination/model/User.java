@@ -9,100 +9,103 @@ import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.util.Coding;
+
 /**
  * @author Pierre Reliquet
  * 
  */
 public class User implements Serializable {
-    
+
     /**
      * long
      */
     private static final long serialVersionUID = -1428734022613190652L;
-    
+
     private String            password;
-    
+
     private Role              role;
-    
+
     private String            userName;
-    
+
     /**
      * 
      */
     public User() {
-    	super();
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if(session != null){
-            session.invalidate();
-        }
+	super();
+	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+	        .getExternalContext().getSession(false);
+	if (session != null) {
+	    session.invalidate();
+	}
     }
-    
+
     /**
      * @param password
      * @param role
      * @param userName
      */
     public User(String password, Role role, String userName) {
-        this();
-        this.password = password;
-        this.role = role;
-        this.userName = userName;
+	this();
+	this.password = new Coding().plainStringToMD5(password + userName);
+	this.role = role;
+	this.userName = userName;
     }
-    
+
     /**
      * @param password
      * @param userName
      */
     public User(String password, String userName) {
-        this();
-        this.password = password;
-        this.userName = userName;
-        this.role = Role.STUDENT;
+	this();
+	this.password = new Coding().plainStringToMD5(password + userName);
+	this.userName = userName;
+	this.role = Role.STUDENT;
     }
-    
+
     /**
      * @return the password
      */
     public String getPassword() {
-        return this.password;
+	return this.password;
     }
-    
+
     /**
      * @return the role
      */
     public Role getRole() {
-        return this.role;
+	return this.role;
     }
-    
+
     /**
      * @return the username
      */
     public String getUserName() {
-        return this.userName;
+	return this.userName;
     }
-    
+
     /**
      * @param password
      *            the password to set
      */
     public void setPassword(String password) {
-        this.password = password;
+	this.password = password;
     }
-    
+
     /**
      * @param role
      *            the role to set
      */
     public void setRole(Role role) {
-        this.role = role;
+	this.role = role;
     }
-    
+
     /**
      * @param userName
      *            the userName to set
      */
     public void setUserName(String userName) {
-        this.userName = userName;
+	this.userName = userName;
     }
-    
+
 }

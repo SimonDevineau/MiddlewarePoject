@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:outputStylesheet library="css" name="design.css"></h:outputStylesheet>
+	<h:panelGrid columns="3" width="100%">
+		<h:column>
+			<div id="telecom_header">
+				<img src="img/telecom_logo.jpeg" alt="logo de Mines-Télécom"
+					id="logo_telecom" />
+			</div>
+		</h:column>
+		<h:column>
+			<div id="title_header">
+				<h1>EMN Examination</h1>
+			</div>
+		</h:column>
+		<h:column>
+			<div id="emn_header">
+				<img src="img/ecole_logo.gif" alt="EMN logo" id="logo_emn" />
+			</div>
+		</h:column>
+	</h:panelGrid>
+
+	<img src="img/sub_header_line.gif"
+		alt="Barre de séparation du menu et du body" id="sub_menu_barre" />
+
+	<h:form>
+		<center>
+			<h:messages errorClass="errorMessage" infoClass="infoMessage"
+				warnClass="warnMessage"></h:messages>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Username : "></p:outputLabel>
+				<p:inputText id="login" value="#{registerBean.login}"></p:inputText>
+
+				<p:outputLabel value="Password : "></p:outputLabel>
+				<p:password id="password" value="#{registerBean.password}"></p:password>
+
+				<p:outputLabel value="Confirmation : "></p:outputLabel>
+				<p:password id="confirmPassword"
+					value="#{registerBean.confirmPassword}"></p:password>
+
+				<p:commandButton value="Submit" action="#{registerBean.register}"
+					type="submit"></p:commandButton>
+				<p:commandButton value="Clear" type="reset"></p:commandButton>
+			</h:panelGrid>
+		</center>
+	</h:form>
+
+
+</body>
+</html>

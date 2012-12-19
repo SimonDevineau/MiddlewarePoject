@@ -16,80 +16,80 @@ import fr.emn.examination.persistence.GenericDAO;
  * 
  */
 public class MockUserDAO implements GenericDAO<fr.emn.examination.model.User> {
-    
+
     private List<User> inMemoryDB = new ArrayList<User>();
-    
+
     /**
      * 
      */
     public MockUserDAO() {
-        this.inMemoryDB.add(new User("student", "student"));
-        this.inMemoryDB.add(new User("student1", "student1"));
-        this.inMemoryDB.add(new User("administrator", Role.ADMINISTRATOR,
-                "administrator"));
+	this.inMemoryDB.add(new User("student", "student"));
+	this.inMemoryDB.add(new User("student1", "student1"));
+	this.inMemoryDB.add(new User("administrator", Role.ADMINISTRATOR,
+	        "administrator"));
     }
-    
+
     /**
      * @see fr.emn.examination.persistence.GenericDAO#create(java.lang.Object)
      */
     @Override
     public void create(User t) {
-    	System.out.println(inMemoryDB.size());
-        this.inMemoryDB.add(t);
-        System.out.println(inMemoryDB.size());
+	System.out.println(inMemoryDB.size());
+	this.inMemoryDB.add(t);
+	System.out.println(inMemoryDB.size());
     }
-    
+
     /**
      * @see fr.emn.examination.persistence.GenericDAO#remove(java.lang.String)
      */
     @Override
     public void remove(String key) {
-    	System.out.println(inMemoryDB.size());
-        int end = this.inMemoryDB.size();
-        int index = 0;
-        for (; index < end; index++) {
-            if (this.inMemoryDB.get(index).getUserName().equals(key)) {
-                break;
-            }
-        }
-        
-        if (index < end) {
-            this.inMemoryDB.remove(index);
-        }
-        System.out.println(inMemoryDB.size());
+	System.out.println(inMemoryDB.size());
+	int end = this.inMemoryDB.size();
+	int index = 0;
+	for (; index < end; index++) {
+	    if (this.inMemoryDB.get(index).getUserName().equals(key)) {
+		break;
+	    }
+	}
+
+	if (index < end) {
+	    this.inMemoryDB.remove(index);
+	}
+	System.out.println(inMemoryDB.size());
     }
-    
+
     /**
      * @see fr.emn.examination.persistence.GenericDAO#retrieveAll()
      */
     @Override
     public List<User> retrieveAll() {
-        return this.inMemoryDB;
+	return this.inMemoryDB;
     }
-    
+
     /**
      * @see fr.emn.examination.persistence.GenericDAO#retrieveByKey(java.lang.String)
      */
     @Override
     public User retrieveByKey(String key) {
-        for (int index = 0, end = this.inMemoryDB.size(); index < end; index++) {
-            if (this.inMemoryDB.get(index).getUserName().equals(key)) {
-                return this.inMemoryDB.get(index);
-            }
-        }
-        return null;
+	for (int index = 0, end = this.inMemoryDB.size(); index < end; index++) {
+	    if (this.inMemoryDB.get(index).getUserName().equals(key)) {
+		return this.inMemoryDB.get(index);
+	    }
+	}
+	return null;
     }
-    
+
     /**
      * @see fr.emn.examination.persistence.GenericDAO#update(java.lang.String,
      *      java.lang.Object)
      */
     @Override
     public void update(String key, User updated) {
-        for (int index = 0, end = this.inMemoryDB.size(); index < end; index++) {
-            if (this.inMemoryDB.get(index).getUserName().equals(key)) {
-                this.inMemoryDB.set(index, updated);
-            }
-        }
+	for (int index = 0, end = this.inMemoryDB.size(); index < end; index++) {
+	    if (this.inMemoryDB.get(index).getUserName().equals(key)) {
+		this.inMemoryDB.set(index, updated);
+	    }
+	}
     }
 }

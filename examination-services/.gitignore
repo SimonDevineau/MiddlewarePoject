@@ -7,3 +7,6 @@ target
 MANIFEST.MF
 .idea
 *.iml
+.class
+bin
+
