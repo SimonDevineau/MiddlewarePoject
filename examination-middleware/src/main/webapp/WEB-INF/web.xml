@@ -16,9 +16,25 @@
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>fr.emn.examination.util.LoginFilter</filter-class>
 	</filter>
+	<filter>
+		<filter-name>AdminFilter</filter-name>
+		<filter-class>fr.emn.examination.util.AdminFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>StudentFilter</filter-name>
+		<filter-class>fr.emn.examination.util.StudentFilter</filter-class>
+	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/restricted/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AdminFilter</filter-name>
+		<url-pattern>/restricted/administrator/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>StudentFilter</filter-name>
+		<url-pattern>/restricted/student/*</url-pattern>
 	</filter-mapping>
 
 	<!-- JSF mapping -->
