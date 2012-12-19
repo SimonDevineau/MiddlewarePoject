@@ -13,6 +13,7 @@ import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacoch
 import fr.emn.examination.model.examen.Examen.Information;
 import fr.emn.examination.model.examen.Examen.Information.Destination;
 import fr.emn.examination.model.examen.Examen.Information.EnTete;
+import fr.emn.examination.util.Utils;
 
 public class HTMLGenerator {
 
@@ -23,14 +24,8 @@ public class HTMLGenerator {
 	}
 
 	public String examenToHTML() {
-		String corpsPage = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "
-				+ "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> \n"
-				+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" \n"
-				+ "xmlns:h=\"http://java.sun.com/jsf/html\" \n"
-				+ "xmlns:f=\"http://java.sun.com/jsf/core\" \n"
-				+ "xmlns:ui=\"http://java.sun.com/jsf/facelets\" \n"
-				+ "xmlns:p=\"http://primefaces.org/ui\"> \n"
-				+ "<h:head></h:head><body> \n";
+		String corpsPage = Utils.loadFile(this.getClass()
+				.getResource("fragments/header.html").getFile());
 
 		corpsPage += enteteToHTML(exam.getInformation().getEnTete());
 		corpsPage += enonceToHTML(exam.getEnonce());
