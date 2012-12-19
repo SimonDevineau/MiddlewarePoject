@@ -1,20 +1,18 @@
 package fr.emn.examination.view;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import fr.emn.examination.model.examen.Case;
-import fr.emn.examination.model.examen.Caseacocher;
-import fr.emn.examination.model.examen.Destination;
-import fr.emn.examination.model.examen.EnTete;
-import fr.emn.examination.model.examen.Enonce;
 import fr.emn.examination.model.examen.Examen;
-import fr.emn.examination.model.examen.Exercice;
-import fr.emn.examination.model.examen.Information;
-import fr.emn.examination.model.examen.Question;
-import fr.emn.examination.test.MockExam;
+import fr.emn.examination.model.examen.Examen.Enonce;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher;
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher.Case;
+import fr.emn.examination.model.examen.Examen.Information;
+import fr.emn.examination.model.examen.Examen.Information.Destination;
+import fr.emn.examination.model.examen.Examen.Information.EnTete;
 
 public class HTMLGenerator {
 
@@ -33,12 +31,13 @@ public class HTMLGenerator {
 				+ "xmlns:ui=\"http://java.sun.com/jsf/facelets\" \n"
 				+ "xmlns:p=\"http://primefaces.org/ui\"> \n"
 				+ "<h:head></h:head><body> \n";
-		
+
 		corpsPage += enteteToHTML(exam.getInformation().getEnTete());
 		corpsPage += enonceToHTML(exam.getEnonce());
 		corpsPage += "</body>\n</html> \n";
 		try {
-			FileWriter enonce = new FileWriter("src/main/webapp/htmlGenerated.xhtml", false);
+			FileWriter enonce = new FileWriter(
+					"src/main/webapp/htmlGenerated.xhtml", false);
 			enonce.write(corpsPage);
 			enonce.close();
 		} catch (IOException e) {
@@ -55,10 +54,10 @@ public class HTMLGenerator {
 	public String enteteToHTML(EnTete et) {
 		// titre, objet, date, auteur, source
 		String html = "";
-		html += String.format(
-				"<h3>Titre: %s</h3>\n<h4>Objet: %s</h4>\n<h5>Date: %s</h5>\n<p>Auteur: %s</p>\n<p>Source: %s</p>\n",
-				et.getTitre(), et.getObjet(), et.getDate(), et.getAuteur(),
-				et.getSource());
+		html += String
+				.format("<h3>Titre: %s</h3>\n<h4>Objet: %s</h4>\n<h5>Date: %s</h5>\n<p>Auteur: %s</p>\n<p>Source: %s</p>\n",
+						et.getTitre(), et.getObjet(), et.getDate(),
+						et.getAuteur(), et.getSource());
 
 		return html;
 	}
@@ -67,7 +66,7 @@ public class HTMLGenerator {
 		String html = "";
 		html += String
 				.format("<p><b>UV:</b>%s</p>\n<p><b>Module:</b>%s</p>\n<p><b>Coefficient:</b>%s</p>\n",
-						d.getUv(), d.getModule(), d.getCoefficient());
+						d.getUV(), d.getModule(), d.getCoefficient());
 		return html;
 	}
 
@@ -86,9 +85,9 @@ public class HTMLGenerator {
 	 */
 	public String caseToHTML(Case c) {
 		String html = "";
-		html += String.format(
-				"<input type=\"radio\" name=\"middleware\" id=\"%d\" value=\"%s\"> %s</input><br/>\n",
-				c.getId(), c.getValue(), c.getValue());
+		html += String
+				.format("<input type=\"radio\" name=\"middleware\" id=\"%d\" value=\"%s\"> %s</input><br/>\n",
+						c.getId(), c.getValue(), c.getValue());
 		return html;
 	}
 
@@ -96,7 +95,7 @@ public class HTMLGenerator {
 		String html = "";
 		html += "<form name=\"formulaire\" action=\"http://www.mydomain.com/myformhandler.cgi\""
 				+ " method=\"POST\">\n<div align=\"center\"><br/>\n";
-		for (Case ca : c.get_case()) {
+		for (Case ca : c.getCase()) {
 			html += caseToHTML(ca);
 		}
 		html += "</div>\n</form>\n";
@@ -105,21 +104,21 @@ public class HTMLGenerator {
 
 	// TODO
 	public String questionToHTML(Question q) {
-		String html = String.format("<p:tab title=\"%s\">\n"  
-        +"<h:panelGrid columns=\"2\" cellpadding=\"10\">\n"  
-        +"<h:outputText/>",q.getTitle());
-		html+=q.getConsigne();
-		html+=caseacocherToHTML(q.getCaseacocher());
-		html+="</h:panelGrid>\n  </p:tab>\n  ";
+		String html = String.format("<p:tab title=\"%s\">\n"
+				+ "<h:panelGrid columns=\"2\" cellpadding=\"10\">\n"
+				+ "<h:outputText/>", q.getTitle());
+		html += q.getConsigne();
+		html += caseacocherToHTML(q.getCaseacocher());
+		html += "</h:panelGrid>\n  </p:tab>\n  ";
 		return html;
 	}
 
 	// TODO
 	public String exerciceToHTML(List<Exercice> list) {
 		String html = "<p:accordionPanel multiple= \"true\">\n";
-		for(Exercice e : list)
-			for(Question q : e.getQuestion())
-				html+= questionToHTML(q)+"\n";
+		for (Exercice e : list)
+			for (Question q : e.getQuestion())
+				html += questionToHTML(q) + "\n";
 		return html + "</p:accordionPanel>\n";
 	}
 
@@ -128,9 +127,4 @@ public class HTMLGenerator {
 		return exerciceToHTML(e.getExercice());
 	}
 
-	
-	public static void main(String[] args) {
-		MockExam mock = new MockExam();
-		System.out.println(new HTMLGenerator(mock.createMockExam()).examenToHTML());
-	}
 }
