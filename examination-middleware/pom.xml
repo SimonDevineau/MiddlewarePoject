@@ -23,6 +23,8 @@
 			with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
 		<!-- <jboss.bom.version>1.0.0.M12-redhat-1</jboss.bom.version>> -->
 		<javaee6.web.spec.version>2.0.0.Final</javaee6.web.spec.version>
+		<!-- CXF -->
+		<cxf.version>2.7.0</cxf.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -33,6 +35,7 @@
 		</repository>
 
 	</repositories>
+
 
 	<dependencyManagement>
 		<dependencies>
@@ -212,6 +215,21 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1-b02</version>
 		</dependency>
+
+		<!-- CXF -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-bundle-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-server</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
 	</dependencies>
 
 	<build>

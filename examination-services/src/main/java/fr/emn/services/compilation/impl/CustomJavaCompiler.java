@@ -11,6 +11,7 @@ import javax.tools.JavaCompiler.CompilationTask;
 import org.eclipse.jdt.internal.compiler.tool.EclipseCompiler;
 
 import fr.emn.services.compilation.Compiler;
+import fr.emn.services.compilation.ExecuteResult;
 import fr.emn.services.compilation.Result;
 
 public class CustomJavaCompiler implements Compiler<InMemoryJavaFile> {

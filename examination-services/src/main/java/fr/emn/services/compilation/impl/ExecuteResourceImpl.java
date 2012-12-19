@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.emn.services.compilation.ExecuteResource;
+import fr.emn.services.compilation.ExecuteResult;
 
 @Path("/execute")
 public final class ExecuteResourceImpl implements ExecuteResource {

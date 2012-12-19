@@ -3,6 +3,8 @@ package fr.emn.services.compilation.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import fr.emn.services.compilation.ExecuteResult;
+
 public class RunnableExecution implements Runnable {
 
 	ExecuteResult result;

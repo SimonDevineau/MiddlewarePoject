@@ -1,4 +1,4 @@
-package fr.emn.services.compilation.impl;
+package fr.emn.services.compilation;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
