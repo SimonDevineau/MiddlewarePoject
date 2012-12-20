@@ -1,0 +1,16 @@
+<!-- <form name="formulaire"
+	action="http://www.mydomain.com/myformhandler.cgi" method="POST">
+
+	<div align="center">
+		<br /> -->
+
+<h:form id="">									<!-- mettre un id -->
+
+	<h:outputText value="#{formBean.consigne}" />
+	<p:selectOneRadio id="options" value="#{formBean.number}" layout="pageDirection">
+		<f:selectItems value="#{formBean.choices}" />
+	</p:selectOneRadio>
+
+	<p:commandButton id="submitButton" value="Valider" />
+
+</h:form>
