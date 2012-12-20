@@ -13,7 +13,7 @@ public class TestHTMLStudentView {
 		String pathFile = "src/main/resources/examenExample.xml";
 		ExamenParser parser = new ExamenParser();
 		Examen mockExam = parser.get(pathFile);
-		HTMLGenerator htmlView = new HTMLGenerator(mockExam);
+		HTMLGenerator htmlView = new HTMLGenerator(mockExam.getIntroduction());
 
 		System.out.println(htmlView.examenToHTML());
 		GenericDAO<Examen> examenDao = Factory.getExamenDAO();

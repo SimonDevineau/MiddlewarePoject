@@ -25,6 +25,77 @@
 		<managed-bean-class>fr.emn.examination.util.Register</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<!-- ManagedBeans relatifs à l'arborescence de l'examen -->
+	<managed-bean>
+		<managed-bean-name>examenBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>enonceBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>exerciceBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>questionBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>caseACocherBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>caseBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher.Case</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>choixMultiplesBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMultiples</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>choixBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMultiples.Choix</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>codeOuTexteBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.CodeOuTexte</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>segmentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.CodeOuTexte.Segment</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>protocoleBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Protocole</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>informationBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Information</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>destinationBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Information.Destination</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>enTeteBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.examen.Examen.Information.EnTete</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>

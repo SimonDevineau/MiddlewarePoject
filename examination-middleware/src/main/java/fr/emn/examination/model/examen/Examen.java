@@ -8,6 +8,7 @@
 
 package fr.emn.examination.model.examen;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -214,9 +215,13 @@ import javax.xml.bind.annotation.XmlValue;
     "conclusion"
 })
 @XmlRootElement(name = "examen")
-public class Examen {
+public class Examen implements Serializable {
 
-    @XmlElement(required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1199189163272442991L;
+	@XmlElement(required = true)
     protected Examen.Information information;
     protected String preambule;
     protected String introduction;
@@ -225,6 +230,8 @@ public class Examen {
     protected String conclusion;
     @XmlAttribute(required = true)
     protected String id;
+    
+    public Examen() {}
 
     /**
      * Gets the value of the information property.
@@ -505,10 +512,16 @@ public class Examen {
     @XmlType(name = "", propOrder = {
         "exercice"
     })
-    public static class Enonce {
+    public static class Enonce implements Serializable {
 
-        @XmlElement(required = true)
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1980254048928377991L;
+		@XmlElement(required = true)
         protected List<Examen.Enonce.Exercice> exercice;
+		
+		public Enonce(){}
 
         /**
          * Gets the value of the exercice property.
@@ -665,9 +678,13 @@ public class Examen {
             "introduction",
             "question"
         })
-        public static class Exercice {
+        public static class Exercice implements Serializable {
 
-            protected String introduction;
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -5239913625296804003L;
+			protected String introduction;
             @XmlElement(required = true)
             protected List<Examen.Enonce.Exercice.Question> question;
             @XmlAttribute
@@ -680,6 +697,8 @@ public class Examen {
             @XmlAttribute
             @XmlSchemaType(name = "positiveInteger")
             protected BigInteger coefficient;
+            
+            public Exercice(){}
 
             /**
              * Gets the value of the introduction property.
@@ -944,9 +963,13 @@ public class Examen {
                 "choixMultiples",
                 "protocole"
             })
-            public static class Question {
+            public static class Question implements Serializable {
 
-                @XmlElement(required = true)
+                /**
+				 * 
+				 */
+				private static final long serialVersionUID = 5582857658692712334L;
+				@XmlElement(required = true)
                 protected String consigne;
                 protected Examen.Enonce.Exercice.Question.CodeOuTexte codeOuTexte;
                 protected Examen.Enonce.Exercice.Question.Caseacocher caseacocher;
@@ -958,6 +981,8 @@ public class Examen {
                 protected BigInteger id;
                 @XmlAttribute
                 protected String title;
+                
+                public Question(){}
 
                 /**
                  * Gets the value of the consigne property.
@@ -1160,10 +1185,16 @@ public class Examen {
                 @XmlType(name = "", propOrder = {
                     "_case"
                 })
-                public static class Caseacocher {
+                public static class Caseacocher implements Serializable{
 
-                    @XmlElement(name = "case", required = true)
+                    /**
+					 * 
+					 */
+					private static final long serialVersionUID = -7749201638173574433L;
+					@XmlElement(name = "case", required = true)
                     protected List<Examen.Enonce.Exercice.Question.Caseacocher.Case> _case;
+					
+					public Caseacocher(){}
 
                     /**
                      * Gets the value of the case property.
@@ -1217,15 +1248,21 @@ public class Examen {
                     @XmlType(name = "", propOrder = {
                         "value"
                     })
-                    public static class Case {
+                    public static class Case implements Serializable {
 
-                        @XmlValue
+                        /**
+						 * 
+						 */
+						private static final long serialVersionUID = -9154735203452689811L;
+						@XmlValue
                         protected String value;
                         @XmlAttribute(required = true)
                         @XmlSchemaType(name = "positiveInteger")
                         protected BigInteger id;
                         @XmlAttribute(required = true)
                         protected boolean correction;
+                        
+                        public Case(){}
 
                         /**
                          * Gets the value of the value property.
@@ -1329,14 +1366,20 @@ public class Examen {
                     "choix",
                     "correction"
                 })
-                public static class ChoixMultiples {
+                public static class ChoixMultiples implements Serializable{
 
-                    @XmlElement(required = true)
+                    /**
+					 * 
+					 */
+					private static final long serialVersionUID = 9039682126522786679L;
+					@XmlElement(required = true)
                     protected List<Examen.Enonce.Exercice.Question.ChoixMultiples.Choix> choix;
                     @XmlElement(required = true)
                     @XmlSchemaType(name = "positiveInteger")
                     protected BigInteger correction;
 
+                    public ChoixMultiples(){}
+                    
                     /**
                      * Gets the value of the choix property.
                      * 
@@ -1412,14 +1455,20 @@ public class Examen {
                     @XmlType(name = "", propOrder = {
                         "value"
                     })
-                    public static class Choix {
+                    public static class Choix implements Serializable{
 
-                        @XmlValue
+                        /**
+						 * 
+						 */
+						private static final long serialVersionUID = 5510476220159393405L;
+						@XmlValue
                         protected String value;
                         @XmlAttribute(required = true)
                         @XmlSchemaType(name = "positiveInteger")
                         protected BigInteger id;
 
+                        public Choix(){}
+                        
                         /**
                          * Gets the value of the value property.
                          * 
@@ -1515,10 +1564,16 @@ public class Examen {
                 @XmlType(name = "", propOrder = {
                     "segment"
                 })
-                public static class CodeOuTexte {
+                public static class CodeOuTexte implements Serializable {
 
-                    @XmlElement(required = true)
+                    /**
+					 * 
+					 */
+					private static final long serialVersionUID = -5493486765135573633L;
+					@XmlElement(required = true)
                     protected List<Examen.Enonce.Exercice.Question.CodeOuTexte.Segment> segment;
+					
+					public CodeOuTexte(){}
 
                     /**
                      * Gets the value of the segment property.
@@ -1583,14 +1638,20 @@ public class Examen {
                         "typeCorrection",
                         "correction"
                     })
-                    public static class Segment {
+                    public static class Segment implements Serializable {
 
-                        @XmlElement(required = true)
+                        /**
+						 * 
+						 */
+						private static final long serialVersionUID = -4871624794262535867L;
+						@XmlElement(required = true)
                         protected String typeCorrection;
                         @XmlElement(required = true)
                         protected List<String> correction;
                         @XmlAttribute(required = true)
                         protected int id;
+                        
+                        public Segment(){}
 
                         /**
                          * Gets the value of the typeCorrection property.
@@ -1690,9 +1751,13 @@ public class Examen {
                 @XmlType(name = "", propOrder = {
                     "value"
                 })
-                public static class Protocole {
+                public static class Protocole implements Serializable {
 
-                    @XmlValue
+                    /**
+					 * 
+					 */
+					private static final long serialVersionUID = 654693495784357627L;
+					@XmlValue
                     protected String value;
                     @XmlAttribute
                     protected String nbEssais;
@@ -1703,6 +1768,8 @@ public class Examen {
                     @XmlAttribute(required = true)
                     protected String nbPoints;
 
+                    public Protocole(){}
+                    
                     /**
                      * Gets the value of the value property.
                      * 
@@ -1891,13 +1958,19 @@ public class Examen {
         "version",
         "commentaires"
     })
-    public static class Information {
+    public static class Information implements Serializable {
 
-        @XmlElement(required = true)
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -3115904111420187495L;
+		@XmlElement(required = true)
         protected Examen.Information.EnTete enTete;
         protected Examen.Information.Destination destination;
         protected String version;
         protected String commentaires;
+        
+        public Information(){}
 
         /**
          * Gets the value of the enTete property.
@@ -2023,12 +2096,18 @@ public class Examen {
             "module",
             "coefficient"
         })
-        public static class Destination {
+        public static class Destination implements Serializable {
 
-            @XmlElement(name = "UV")
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 5150334669925783135L;
+			@XmlElement(name = "UV")
             protected String uv;
             protected String module;
             protected String coefficient;
+            
+            public Destination(){}
 
             /**
              * Gets the value of the uv property.
@@ -2136,14 +2215,20 @@ public class Examen {
             "auteur",
             "source"
         })
-        public static class EnTete {
+        public static class EnTete implements Serializable{
 
-            @XmlElement(required = true)
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -3962003010709950377L;
+			@XmlElement(required = true)
             protected String titre;
             protected String objet;
             protected String date;
             protected String auteur;
             protected String source;
+            
+            public EnTete(){}
 
             /**
              * Gets the value of the titre property.
