@@ -2,6 +2,7 @@ package fr.emn.examination.parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -25,7 +26,7 @@ public class ExamenParser {
 	}
     }
 
-    public Examen get(String pathFile) {
+    public Examen getFromFile(String pathFile) {
 	File fileToParse = new File(pathFile);
 	if (fileToParse.exists()) {
 
@@ -56,5 +57,9 @@ public class ExamenParser {
 	    return new Examen();
 	}
 
+    }
+
+    public Examen getFromString(String content) throws JAXBException {
+	return (Examen) this.parser.unmarshal(new StringReader(content));
     }
 }

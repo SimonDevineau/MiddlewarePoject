@@ -8,9 +8,11 @@ import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBException;
 
-import fr.emn.examination.model.examen.Examen;
 import fr.emn.examination.parser.ExamenParser;
+import fr.emn.examination.parser.JavaCodeParser;
+import fr.emn.examination.persistence.Factory;
 import fr.emn.examination.util.Coding;
 
 /**
@@ -19,110 +21,120 @@ import fr.emn.examination.util.Coding;
  */
 public class User implements Serializable {
 
-	/**
-	 * long
-	 */
-	private static final long serialVersionUID = -1428734022613190652L;
+    /**
+     * long
+     */
+    private static final long serialVersionUID = -1428734022613190652L;
 
-	private String password;
+    private String            password;
 
-	private Role role;
+    private Role              role;
 
-	private String userName;
+    private String            userName;
 
-	private ExamenStudent examen;
+    private ExamenStudent     examen;
 
-	/**
+    /**
      * 
      */
-	public User() {
-		super();
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-		// String pathFile = "C:\\Users\\DAYDE\\examenExample.xml";
-		// ExamenParser parser = new ExamenParser();
-		// examen = parser.get(pathFile);
-		examen = new ExamenStudent();
-		
+    public User() {
+	super();
+	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+	        .getExternalContext().getSession(false);
+	if (session != null) {
+	    session.invalidate();
 	}
+	String xmlString = Factory.getExamenXMLDAO().retrieveAll().get(0);
+	ExamenParser parserXml = new ExamenParser();
+	String javaString = Factory.getExamenXMLDAO().retrieveAll().get(0);
+	JavaCodeParser parserJava = new JavaCodeParser(javaString);
 
-	/**
-	 * @param password
-	 * @param role
-	 * @param userName
-	 */
-	public User(String password, Role role, String userName) {
-		this();
-		this.password = new Coding().plainStringToMD5(password + userName);
-		this.role = role;
-		this.userName = userName;
+	try {
+	    examen = new ExamenStudent(parserXml.getFromString(xmlString),
+		    parserJava.getJavaCode());
 	}
+	catch (JAXBException e) {
+	    e.printStackTrace();
+	    examen = new ExamenStudent(); // TODO la meilleure solution serait
+		                          // de relancer l'exception au niveau
+		                          // superieur
+	}
+    }
 
-	/**
-	 * @param password
-	 * @param userName
-	 */
-	public User(String password, String userName) {
-		this();
-		this.password = new Coding().plainStringToMD5(password + userName);
-		this.userName = userName;
-		this.role = Role.STUDENT;
-	}
+    /**
+     * @param password
+     * @param role
+     * @param userName
+     */
+    public User(String password, Role role, String userName) {
+	this();
+	this.password = new Coding().plainStringToMD5(password + userName);
+	this.role = role;
+	this.userName = userName;
+    }
 
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return this.password;
-	}
+    /**
+     * @param password
+     * @param userName
+     */
+    public User(String password, String userName) {
+	this();
+	this.password = new Coding().plainStringToMD5(password + userName);
+	this.userName = userName;
+	this.role = Role.STUDENT;
+    }
 
-	/**
-	 * @return the role
-	 */
-	public Role getRole() {
-		return this.role;
-	}
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+	return this.password;
+    }
 
-	/**
-	 * @return the username
-	 */
-	public String getUserName() {
-		return this.userName;
-	}
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+	return this.role;
+    }
 
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * @return the username
+     */
+    public String getUserName() {
+	return this.userName;
+    }
 
-	/**
-	 * @param role
-	 *            the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    /**
+     * @param password
+     *            the password to set
+     */
+    public void setPassword(String password) {
+	this.password = password;
+    }
 
-	/**
-	 * @param userName
-	 *            the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    /**
+     * @param role
+     *            the role to set
+     */
+    public void setRole(Role role) {
+	this.role = role;
+    }
 
-	public ExamenStudent getExamen() {
-		return examen;
-	}
+    /**
+     * @param userName
+     *            the userName to set
+     */
+    public void setUserName(String userName) {
+	this.userName = userName;
+    }
 
-	public void setExamen(ExamenStudent examen) {
-		this.examen = examen;
-	}
+    public ExamenStudent getExamen() {
+	return examen;
+    }
+
+    public void setExamen(ExamenStudent examen) {
+	this.examen = examen;
+    }
 
 }
