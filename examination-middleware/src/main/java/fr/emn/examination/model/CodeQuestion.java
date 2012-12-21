@@ -1,58 +1,63 @@
 package fr.emn.examination.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+public class CodeQuestion extends QuestionStudent implements Serializable {
 
-public class CodeQuestion extends Question {
-	
-	private HashMap<String, String> segments;
-	
-	private ArrayList<String> 
-	displayedCode,
-	segmentIds;
-	
-	private JavaCode javaCode;
-	
-	private String id;
-	
-	public CodeQuestion(JavaCode javaCode, String id, ArrayList<String> displayedCode, ArrayList<String> segmentIds, HashMap<String, String> segments) {
-		this.segments = segments;
-		this.displayedCode = displayedCode;
-		this.segmentIds = segmentIds;
-		this.javaCode = javaCode;
-		this.id = id;
-	}
+    /**
+     * 
+     */
+    private static final long       serialVersionUID = -1760344569100720715L;
 
-	public HashMap<String, String> getSegments() {
-		return segments;
-	}
+    private HashMap<String, String> segments;
 
-	public ArrayList<String> getDisplayedCode() {
-		return displayedCode;
-	}
+    private ArrayList<String>       displayedCode, segmentIds;
 
-	public ArrayList<String> getSegmentIds() {
-		return segmentIds;
-	}
-	
-	public JavaCode getJavaCode() {
-		return javaCode;
-	}
+    private JavaCode                javaCode;
 
-	public String getId() {
-		return id;
-	}
-	
-	@Override
-	public String toString() {
-		return id+"\n"+displayedCode+"\n"+segmentIds+"\n"+segments;
-	}
+    private String                  id;
 
-	@Override
-	public double evaluer() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
+    public CodeQuestion(JavaCode javaCode, String id,
+	    ArrayList<String> displayedCode, ArrayList<String> segmentIds,
+	    HashMap<String, String> segments) {
+	this.segments = segments;
+	this.displayedCode = displayedCode;
+	this.segmentIds = segmentIds;
+	this.javaCode = javaCode;
+	this.id = id;
+    }
+
+    public HashMap<String, String> getSegments() {
+	return segments;
+    }
+
+    public ArrayList<String> getDisplayedCode() {
+	return displayedCode;
+    }
+
+    public ArrayList<String> getSegmentIds() {
+	return segmentIds;
+    }
+
+    public JavaCode getJavaCode() {
+	return javaCode;
+    }
+
+    public String getId() {
+	return id;
+    }
+
+    @Override
+    public String toString() {
+	return id + "\n" + displayedCode + "\n" + segmentIds + "\n" + segments;
+    }
+
+    @Override
+    public double evaluer() {
+	// TODO Auto-generated method stub
+	return 0;
+    }
+
 }

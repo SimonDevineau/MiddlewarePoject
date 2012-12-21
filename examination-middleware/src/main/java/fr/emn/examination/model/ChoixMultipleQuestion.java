@@ -8,7 +8,7 @@ import java.util.Map;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMultiples;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMultiples.Choix;
 
-public class ChoixMultipleQuestion extends Question {
+public class ChoixMultipleQuestion extends QuestionStudent {
 
 	private ChoixMultiples choix;
 	private List<Choix> aRetourner;

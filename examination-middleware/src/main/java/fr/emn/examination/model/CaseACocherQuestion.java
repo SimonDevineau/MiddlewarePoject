@@ -8,7 +8,7 @@ import java.util.Map;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher;
 import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacocher.Case;
 
-public class CaseACocherQuestion extends Question {
+public class CaseACocherQuestion extends QuestionStudent {
 
 	private Caseacocher cases;
 	private List<Case> aRetourner;

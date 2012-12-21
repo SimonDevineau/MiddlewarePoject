@@ -25,6 +25,7 @@ public class MockStoredFile implements GenericDAO<String> {
     @Override
     public void create(String t) {
 	this.inMemoryDB.add(t);
+	System.out.println(this.inMemoryDB.indexOf(t));
     }
 
     @Override

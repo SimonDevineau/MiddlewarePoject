@@ -44,9 +44,9 @@ public class User implements Serializable {
 	if (session != null) {
 	    session.invalidate();
 	}
-	String xmlString = Factory.getExamenXMLDAO().retrieveAll().get(0);
+	String xmlString = Factory.getExamenXMLDAO().retrieveAll().get(1);
 	ExamenParser parserXml = new ExamenParser();
-	String javaString = Factory.getExamenXMLDAO().retrieveAll().get(0);
+	String javaString = Factory.getExamenXMLDAO().retrieveAll().get(2);
 	JavaCodeParser parserJava = new JavaCodeParser(javaString);
 
 	try {
