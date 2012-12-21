@@ -8,9 +8,12 @@
 <h:head></h:head>
 <body>
 	<h:form>
-		<p:outputLabel value="#{userBean.examen.information.enTete.titre}"></p:outputLabel><br/>
-		<p:outputLabel value="#{userBean.examen.information.enTete.objet}"></p:outputLabel><br/>
-		<p:outputLabel value="#{userBean.examen.information.enTete.date}"></p:outputLabel><br/>
+		<p:outputLabel value="#{userBean.examen.information.enTete.titre}"></p:outputLabel>
+		<br />
+		<p:outputLabel value="#{userBean.examen.information.enTete.objet}"></p:outputLabel>
+		<br />
+		<p:outputLabel value="#{userBean.examen.information.enTete.date}"></p:outputLabel>
+		<br />
 
 		<p:outputLabel value="#{userBean.examen.preambule}"></p:outputLabel>
 
@@ -26,12 +29,14 @@
 						<h:form>
 							<!-- Case à cocher -->
 
-							<p:selectManyCheckbox rendered="#{q.caseacocher!=null}"
-								layout="pageDirection" value="#{q.caseacocher.case}">
+							<p:dataList rendered="#{q.caseacocher!=null}"
+								value="#{q.caseacocher.case}" var="c">
 								<!--  TODO -->
-
+								<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
+								<p:outputLabel value="#{c.value}"></p:outputLabel>
+								
 								<!--  TODO -->
-							</p:selectManyCheckbox>
+							</p:dataList>
 
 
 							<!-- Choix multiple -->
