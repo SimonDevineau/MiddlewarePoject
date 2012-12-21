@@ -14,13 +14,11 @@
 	</div>
 	<p>Veuillez selectionner un fichier xml correspondant à un sujet d'examen.</p>
 		<h:form enctype="multipart/form-data">
-
 			<p:fileUpload
 				fileUploadListener="#{fileUploadController.handleFileUpload}"
 				mode="advanced"
 				update="messages"
 				auto="true"
-				sizeLimit="100000"
 				allowTypes="/(\.|\/)(xml)$/" />
 
 			<p:growl id="messages" showDetail="true" />
