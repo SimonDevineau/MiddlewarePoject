@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class CodeQuestion {
+public class CodeQuestion extends Question {
 	
 	private HashMap<String, String> segments;
 	
@@ -47,6 +47,12 @@ public class CodeQuestion {
 	@Override
 	public String toString() {
 		return id+"\n"+displayedCode+"\n"+segmentIds+"\n"+segments;
+	}
+
+	@Override
+	public double evaluer() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

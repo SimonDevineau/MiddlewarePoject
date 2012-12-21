@@ -12,7 +12,7 @@ public class TestHTMLStudentView {
 	public static void main(String[] args) {
 		String pathFile = "src/main/resources/examenExample.xml";
 		ExamenParser parser = new ExamenParser();
-		Examen mockExam = parser.getFromFile(pathFile);
+		Examen mockExam = parser.get(pathFile);
 		HTMLGenerator htmlView = new HTMLGenerator(mockExam.getIntroduction());
 
 		System.out.println(htmlView.examenToHTML());

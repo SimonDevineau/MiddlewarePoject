@@ -5,15 +5,12 @@
 package fr.emn.examination.model;
 
 import java.io.Serializable;
-import java.io.StringReader;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.JAXBException;
 
 import fr.emn.examination.model.examen.Examen;
 import fr.emn.examination.parser.ExamenParser;
-import fr.emn.examination.persistence.Factory;
 import fr.emn.examination.util.Coding;
 
 /**
@@ -33,7 +30,7 @@ public class User implements Serializable {
 
 	private String userName;
 
-	private Examen examen;
+	private ExamenStudent examen;
 
 	/**
      * 
@@ -45,15 +42,11 @@ public class User implements Serializable {
 		if (session != null) {
 			session.invalidate();
 		}
-		String string = Factory.getExamenXMLDAO()
-				.retrieveAll().get(0);
-		ExamenParser parser = new ExamenParser();
-		try {
-			examen = parser.getFromString(string);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-			examen = new Examen(); //TODO la meilleure solution serait de relancer l'exception au niveau superieur
-		}
+		// String pathFile = "C:\\Users\\DAYDE\\examenExample.xml";
+		// ExamenParser parser = new ExamenParser();
+		// examen = parser.get(pathFile);
+		examen = new ExamenStudent();
+		
 	}
 
 	/**
@@ -124,11 +117,11 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 
-	public Examen getExamen() {
+	public ExamenStudent getExamen() {
 		return examen;
 	}
 
-	public void setExamen(Examen examen) {
+	public void setExamen(ExamenStudent examen) {
 		this.examen = examen;
 	}
 
