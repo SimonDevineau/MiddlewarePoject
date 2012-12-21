@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:outputLabel value="#{userBean.examen.information.enTete.titre}"></p:outputLabel>
+		<br />
+		<p:outputLabel value="#{userBean.examen.information.enTete.objet}"></p:outputLabel>
+		<br />
+		<p:outputLabel value="#{userBean.examen.information.enTete.date}"></p:outputLabel>
+		<br />
+
+		<p:outputLabel value="#{userBean.examen.preambule}"></p:outputLabel>
+
+		<p:outputLabel value="#{userBean.examen.introduction}"></p:outputLabel>
+
+
+		<p:accordionPanel value="#{userBean.examen.enonce.exercice}" var="exo">
+			<p:tab title="#{exo.title}">
+				<p:outputLabel value="#{exo.introduction}"></p:outputLabel>
+				<p:accordionPanel multiple="true" value="#{exo.question}" var="q">
+					<p:tab title="#{q.title}">
+						<p:outputLabel value="#{q.consigne}"></p:outputLabel>
+						<h:form>
+							<!-- Case à cocher -->
+
+							<p:dataList rendered="#{q.caseacocher!=null}"
+								value="#{q.caseacocher.case}" var="c">
+								<!--  TODO -->
+								<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
+								<p:outputLabel value="#{c.value}"></p:outputLabel>
+								
+								<!--  TODO -->
+							</p:dataList>
+
+
+							<!-- Choix multiple -->
+
+							<p:selectOneRadio rendered="#{q.choixMultiples!=null}"
+								layout="pageDirection" value="#{q.choixMultiples.choix}">
+								<!--  TODO -->
+								<f:selectItems value=""></f:selectItems>
+								<!--  TODO -->
+							</p:selectOneRadio>
+
+							<!-- Code ou texte -->
+							<p:dataList value="#{q.codeOuTexte.segment}" var="seg"
+								rendered="#{q.codeOuTexte!=null}">
+								<p:inputTextarea rows="10" cols="150" autoResize="false" />
+								<!--  TODO : rajouter les bout de code fournis autour -->
+
+							</p:dataList>
+
+							<p:commandButton value="Valider"></p:commandButton>
+						</h:form>
+					</p:tab>
+				</p:accordionPanel>
+			</p:tab>
+		</p:accordionPanel>
+
+
+		<p:outputLabel value="#{examenBean.conclusion}"></p:outputLabel>
+	</h:form>
+</body>
+</html>

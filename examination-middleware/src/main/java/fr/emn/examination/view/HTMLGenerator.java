@@ -16,14 +16,17 @@ import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.CodeOuTex
 import fr.emn.examination.model.examen.Examen.Information;
 import fr.emn.examination.model.examen.Examen.Information.Destination;
 import fr.emn.examination.model.examen.Examen.Information.EnTete;
+import fr.emn.examination.persistence.Factory;
 import fr.emn.examination.util.Utils;
 
 public class HTMLGenerator {
 
 	private Examen exam;
 
-	public HTMLGenerator(Examen exam) {
-		this.exam = exam;
+	public HTMLGenerator(String key) {
+		//FIXME: sale pour le moment, juste pour les tests
+		this.exam = Factory.getExamenDAO().retrieveByKey("Dans un module de calculs, appelé Calculs,"
+			+"on développe des fonctions génériques de calculs opérant sur les interfaces précédentes.");
 	}
 
 	public String examenToHTML() {
@@ -147,7 +150,7 @@ public class HTMLGenerator {
 		if (e != null) {
 			return exerciceToHTML(e.getExercice());
 		} else {
-			return "There is a, error with the examen";
+			return "There is an error with the exam";
 		}
 	}
 

@@ -3,7 +3,7 @@
 	xsi:noNamespaceSchemaLocation="xmlSchemaExamen.xsd" id="idBDD">
 	<information>
 		<enTete>
-			<titre>titre</titre>
+			<titre>Titreeee</titre>
 			<objet>Cet examen est un test pour le Middleware</objet>
 			<date>19 décembre 2012</date>
 			<auteur>L'equipe GSI</auteur>
