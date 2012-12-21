@@ -8,6 +8,7 @@ import fr.emn.examination.model.User;
 import fr.emn.examination.model.examen.Examen;
 import fr.emn.examination.persistence.impl.MockExaminationDAO;
 import fr.emn.examination.persistence.impl.MockUserDAO;
+import fr.emn.examination.persistence.impl.MockStoredFile;
 
 /**
  * @author pierre
@@ -16,6 +17,8 @@ import fr.emn.examination.persistence.impl.MockUserDAO;
 public class Factory {
     
     private static volatile GenericDAO<Examen> examenDAO = null;
+    
+    private static volatile GenericDAO<String> examenXMLDAO = null;
     
     private static volatile GenericDAO<User>   userDAO   = null;
     
@@ -33,4 +36,10 @@ public class Factory {
         return userDAO;
     }
     
+    public static synchronized GenericDAO<String> getExamenXMLDAO() {
+        if (examenXMLDAO == null) {
+            examenXMLDAO = new MockStoredFile();
+        }
+        return examenXMLDAO;
+    }
 }
