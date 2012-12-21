@@ -1,4 +1,4 @@
-package fr.emn.examination.view;
+package fr.emn.examination.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
