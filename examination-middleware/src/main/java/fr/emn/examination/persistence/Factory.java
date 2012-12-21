@@ -21,6 +21,8 @@ public class Factory {
     private static volatile GenericDAO<String> examenXMLDAO = null;
     
     private static volatile GenericDAO<User>   userDAO   = null;
+
+	private static volatile GenericDAO<String> examenCodeDAO = null;
     
     public static synchronized GenericDAO<Examen> getExamenDAO() {
         if (examenDAO == null) {
@@ -41,5 +43,12 @@ public class Factory {
             examenXMLDAO = new MockStoredFile();
         }
         return examenXMLDAO;
+    }
+    
+    public static synchronized GenericDAO<String> getExamenCodeDAO() {
+		if (examenCodeDAO  == null) {
+            examenCodeDAO = new MockStoredFile();
+        }
+        return examenCodeDAO;
     }
 }
