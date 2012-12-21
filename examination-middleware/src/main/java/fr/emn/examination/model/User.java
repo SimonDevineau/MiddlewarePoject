@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.emn.examination.model.examen.Examen;
+import fr.emn.examination.parser.ExamenParser;
 import fr.emn.examination.util.Coding;
 
 /**
@@ -28,6 +30,8 @@ public class User implements Serializable {
 
     private String            userName;
 
+    private Examen            examen;
+
     /**
      * 
      */
@@ -38,6 +42,9 @@ public class User implements Serializable {
 	if (session != null) {
 	    session.invalidate();
 	}
+	String pathFile = "C:\\Users\\DAYDE\\examenExample.xml";
+	ExamenParser parser = new ExamenParser();
+	examen = parser.get(pathFile);
     }
 
     /**
@@ -106,6 +113,14 @@ public class User implements Serializable {
      */
     public void setUserName(String userName) {
 	this.userName = userName;
+    }
+
+    public Examen getExamen() {
+	return examen;
+    }
+
+    public void setExamen(Examen examen) {
+	this.examen = examen;
     }
 
 }
