@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.emn.examination.model.CodeQuestion;
+import fr.emn.examination.model.JavaCode;
+
 
 public class JavaCodeParser {
 
