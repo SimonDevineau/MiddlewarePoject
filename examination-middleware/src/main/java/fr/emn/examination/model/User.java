@@ -46,6 +46,7 @@ public class User implements Serializable {
 		// ExamenParser parser = new ExamenParser();
 		// examen = parser.get(pathFile);
 		examen = new ExamenStudent();
+		
 	}
 
 	/**
