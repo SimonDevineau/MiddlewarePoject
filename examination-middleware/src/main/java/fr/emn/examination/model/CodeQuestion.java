@@ -17,8 +17,6 @@ public class CodeQuestion extends QuestionStudent implements Serializable {
 
     private JavaCode                javaCode;
 
-    private String                  id;
-
     public CodeQuestion(JavaCode javaCode, String id,
 	    ArrayList<String> displayedCode, ArrayList<String> segmentIds,
 	    HashMap<String, String> segments) {
@@ -45,10 +43,6 @@ public class CodeQuestion extends QuestionStudent implements Serializable {
 	return javaCode;
     }
 
-    public String getId() {
-	return id;
-    }
-
     @Override
     public String toString() {
 	return id + "\n" + displayedCode + "\n" + segmentIds + "\n" + segments;
@@ -56,8 +50,7 @@ public class CodeQuestion extends QuestionStudent implements Serializable {
 
     @Override
     public double evaluer() {
-	// TODO Auto-generated method stub
-	return 0;
+	return 20;
     }
 
 }
