@@ -11,40 +11,40 @@
 		</enTete>
 	</information>
 	<enonce>
-		<exercice langage="" id="1" title="Un Module de calcul">
+		<exercice langage="" id="e1" title="Un Module de calcul">
 			<introduction>Dans un module de calculs, appelé Calculs,
 			on développe des fonctions génériques de calculs opérant sur les interfaces précédentes.
 			</introduction>
 
-			<question id="1">
+			<question id="q1">
 				<consigne>Quel est le meilleur département?</consigne>
 				<caseacocher>
-					<case correction="true" id="2">Loire-Atlantique</case>
-					<case correction="true" id="1">Vendée</case>
+					<case correction="true" id="c2">Loire-Atlantique</case>
+					<case correction="true" id="c1">Vendée</case>
 				</caseacocher>
 				<protocole nbPoints="2"></protocole>
 			</question>
 		</exercice>
 		<exercice langage="Java" id="2">
 			<introduction>Introduction de l'expo 2</introduction>
-			<question id="1">
+			<question id="q1">
 				<consigne>Quel est le meilleur département?</consigne>
 				<caseacocher>
-					<case correction="true" id="2">Loire-Atlantique</case>
-					<case correction="true" id="1">Vendée</case>
+					<case correction="true" id="c2">Loire-Atlantique</case>
+					<case correction="true" id="c1">Vendée</case>
 				</caseacocher>
 				<protocole nbPoints="2"></protocole>
 			</question>
 		</exercice>
 		<exercice langage="Java" id="3">
-			<question id="1">
+			<question id="q1">
 				<consigne>Test de code</consigne>
 				<codeOuTexte>
-					<segment id="1">
+					<segment id="s1">
 						<typeCorrection>syntaxeSeulement</typeCorrection>
 						<correction>correction1</correction>
 					</segment>
-					<segment id="2">
+					<segment id="s2">
 						<typeCorrection>testCompilationPuisExecution</typeCorrection>
 						<correction>correction2</correction>
 					</segment>
