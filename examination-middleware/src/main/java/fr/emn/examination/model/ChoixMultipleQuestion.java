@@ -10,9 +10,9 @@ import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.ChoixMult
 
 public class ChoixMultipleQuestion extends QuestionStudent {
 
-    private ChoixMultiples      choix;
-    private List<Choix>         aRetourner;
-    private Map<String, String> aAfficher;
+    private ChoixMultiples     choix;
+    private List<Choix>        selectedCases;
+    private Map<String, Choix> displayedCases;
 
     public ChoixMultipleQuestion() {
     }
@@ -20,10 +20,10 @@ public class ChoixMultipleQuestion extends QuestionStudent {
     public ChoixMultipleQuestion(Question q, ChoixMultiples choix) {
 	super(q);
 	this.choix = choix;
-	this.aRetourner = new ArrayList<Choix>();
-	this.aAfficher = new HashMap<String, String>();
+	this.selectedCases = new ArrayList<Choix>();
+	this.displayedCases = new HashMap<String, Choix>();
 	for (Choix c : choix.getChoix()) {
-	    aAfficher.put(c.getId() + "", c.getValue());
+	    displayedCases.put(c.getValue(), c);
 	}
     }
 
@@ -35,20 +35,20 @@ public class ChoixMultipleQuestion extends QuestionStudent {
 	this.choix = choix;
     }
 
-    public List<Choix> getaRetourner() {
-	return aRetourner;
+    public List<Choix> getSelectedCases() {
+	return selectedCases;
     }
 
-    public void setaRetourner(List<Choix> aRetourner) {
-	this.aRetourner = aRetourner;
+    public void setSelectedCases(List<Choix> selectedCases) {
+	this.selectedCases = selectedCases;
     }
 
-    public Map<String, String> getaAfficher() {
-	return aAfficher;
+    public Map<String, Choix> getDisplayedCases() {
+	return displayedCases;
     }
 
-    public void setaAfficher(Map<String, String> aAfficher) {
-	this.aAfficher = aAfficher;
+    public void setDisplayedCases(Map<String, Choix> displayedCases) {
+	this.displayedCases = displayedCases;
     }
 
     @Override

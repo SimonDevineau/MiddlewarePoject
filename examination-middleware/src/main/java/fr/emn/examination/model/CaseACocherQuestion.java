@@ -10,9 +10,9 @@ import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question.Caseacoch
 
 public class CaseACocherQuestion extends QuestionStudent {
 
-    private Caseacocher         cases;
-    private List<Case>          aRetourner;
-    private Map<String, String> aAfficher;
+    private Caseacocher       cases;
+    private List<Case>        selectedCases;
+    private Map<String, Case> displayedCases;
 
     public CaseACocherQuestion() {
     }
@@ -20,10 +20,10 @@ public class CaseACocherQuestion extends QuestionStudent {
     public CaseACocherQuestion(Question q, Caseacocher cases) {
 	super(q);
 	this.cases = cases;
-	this.aRetourner = new ArrayList<Case>();
-	this.aAfficher = new HashMap<String, String>();
+	this.setSelectedCases(new ArrayList<Case>());
+	this.displayedCases = new HashMap<String, Case>();
 	for (Case c : cases.getCase()) {
-	    aAfficher.put(c.getId() + "", c.getValue());
+	    displayedCases.put(c.getValue(), c);
 	}
     }
 
@@ -35,20 +35,20 @@ public class CaseACocherQuestion extends QuestionStudent {
 	this.cases = cases;
     }
 
-    public List<Case> getaRetourner() {
-	return aRetourner;
+    public List<Case> getSelectedCases() {
+	return selectedCases;
     }
 
-    public void setaRetourner(List<Case> aRetourner) {
-	this.aRetourner = aRetourner;
+    public void setSelectedCases(List<Case> selectedCases) {
+	this.selectedCases = selectedCases;
     }
 
-    public Map<String, String> getaAfficher() {
-	return aAfficher;
+    public Map<String, Case> getDisplayedCases() {
+	return displayedCases;
     }
 
-    public void setaAfficher(Map<String, String> aAfficher) {
-	this.aAfficher = aAfficher;
+    public void setDisplayedCases(Map<String, Case> displayedCases) {
+	this.displayedCases = displayedCases;
     }
 
     @Override

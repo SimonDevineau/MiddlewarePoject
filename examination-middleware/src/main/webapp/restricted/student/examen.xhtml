@@ -36,17 +36,16 @@
 							</p:dataList> -->
 
 							<h:selectManyCheckbox rendered="#{q.caseacocher!=null}"
-								value="#{q.caseacocher.case}" layout="pageDirection" var="c">
-								<f:selectItem itemLabel="#{c.value}" />
+								value="#{q.selectedCases}" layout="pageDirection">
+								<f:selectItems value="#{q.displayedCases}" />
 							</h:selectManyCheckbox>
 
 
 							<!-- Choix multiple -->
 
 							<p:selectOneRadio rendered="#{q.choixMultiples!=null}"
-								layout="pageDirection" value="#{q.choixMultiples.choix}"
-								var="ch">
-								<f:selectItems itemLabel="#{ch.value}" />
+								layout="pageDirection" value="#{q.selectedCases}">
+								<f:selectItems value="#{q.displayedCases}" />
 							</p:selectOneRadio>
 
 							<!-- Code ou texte -->
