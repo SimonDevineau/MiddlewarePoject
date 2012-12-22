@@ -18,6 +18,9 @@ public class ExamenStudent extends Examen implements Serializable {
     }
 
     public ExamenStudent(Examen exam, JavaCode javaCode) {
+	super(exam.getInformation(), exam.getPreambule(), exam
+	        .getIntroduction(), exam.getEnonce(), exam.getConclusion(),
+	        exam.getId());
 	this.exos = new ArrayList<ExerciceStudent>();
 	for (fr.emn.examination.model.examen.Examen.Enonce.Exercice exo : exam
 	        .getEnonce().getExercice()) {
