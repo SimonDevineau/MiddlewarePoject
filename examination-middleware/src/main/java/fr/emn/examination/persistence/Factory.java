@@ -6,8 +6,9 @@ package fr.emn.examination.persistence;
 
 import fr.emn.examination.model.User;
 import fr.emn.examination.model.examen.Examen;
+import fr.emn.examination.persistence.impl.MockCodeStorageDAO;
 import fr.emn.examination.persistence.impl.MockExaminationDAO;
-import fr.emn.examination.persistence.impl.MockStoredFile;
+import fr.emn.examination.persistence.impl.MockXMLStorageDAO;
 import fr.emn.examination.persistence.impl.MockUserDAO;
 
 /**
@@ -40,14 +41,14 @@ public class Factory {
 
     public static synchronized GenericDAO<String> getExamenXMLDAO() {
 	if (examenXMLDAO == null) {
-	    examenXMLDAO = new MockStoredFile();
+	    examenXMLDAO = new MockXMLStorageDAO();
 	}
 	return examenXMLDAO;
     }
 
     public static synchronized GenericDAO<String> getExamenCodeDAO() {
 	if (examenCodeDAO == null) {
-	    examenCodeDAO = new MockStoredFile();
+	    examenCodeDAO = new MockCodeStorageDAO();
 	}
 	return examenCodeDAO;
     }
