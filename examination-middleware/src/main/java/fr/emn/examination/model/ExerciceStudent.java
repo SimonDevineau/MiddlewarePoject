@@ -33,4 +33,13 @@ public class ExerciceStudent extends
 	    }
 	}
     }
+
+	public List<fr.emn.examination.model.QuestionStudent> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(
+			List<fr.emn.examination.model.QuestionStudent> questions) {
+		this.questions = questions;
+	}
 }
