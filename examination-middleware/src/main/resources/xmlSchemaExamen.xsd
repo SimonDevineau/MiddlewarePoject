@@ -116,7 +116,7 @@
 																				</xs:element>
 																			</xs:sequence>
 																			<xs:attribute
-																				name="id" type="xs:int" use="required">
+																				name="id" type="xs:string" use="required">
 																			</xs:attribute>
 																		</xs:complexType>
 																	</xs:element>
@@ -135,7 +135,7 @@
 																				<xs:extension
 																					base="xs:string">
 																					<xs:attribute
-																						type="xs:positiveInteger" name="id"
+																						type="xs:string" name="id"
 																						use="required" />
 																					<xs:attribute
 																						name="correction" type="xs:boolean"
@@ -159,7 +159,7 @@
 																				<xs:extension
 																					base="xs:string">
 																					<xs:attribute
-																						type="xs:positiveInteger" name="id"
+																						type="xs:string" name="id"
 																						use="required" />
 																				</xs:extension>
 																			</xs:simpleContent>
@@ -194,7 +194,7 @@
 													</xs:element>
 												</xs:sequence>
 												<xs:attribute name="id"
-													type="xs:positiveInteger" use="required">
+													type="xs:string" use="required">
 												</xs:attribute>
 												<xs:attribute
 													name="title" type="xs:string">
@@ -205,7 +205,7 @@
 									<xs:attribute type="xs:string"
 										name="title" />
 									<xs:attribute
-										type="xs:positiveInteger" name="id" use="required" />
+										type="xs:string" name="id" use="required" />
 									<xs:attribute type="xs:string"
 										name="langage" use="required" />
 									<xs:attribute
