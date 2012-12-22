@@ -216,7 +216,23 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlRootElement(name = "examen")
 public class Examen {
 
-    @XmlElement(required = true)
+    public Examen(Information information, String preambule,
+			String introduction, Enonce enonce, String conclusion, String id) {
+		super();
+		this.information = information;
+		this.preambule = preambule;
+		this.introduction = introduction;
+		this.enonce = enonce;
+		this.conclusion = conclusion;
+		this.id = id;
+	}
+
+	public Examen() {
+		super();
+	}
+
+
+	@XmlElement(required = true)
     protected Examen.Information information;
     protected String preambule;
     protected String introduction;
@@ -507,7 +523,19 @@ public class Examen {
     })
     public static class Enonce {
 
-        @XmlElement(required = true)
+        public Enonce(List<Exercice> exercice) {
+			super();
+			this.exercice = exercice;
+		}
+
+
+		public Enonce() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+
+		@XmlElement(required = true)
         protected List<Examen.Enonce.Exercice> exercice;
 
         /**
@@ -667,7 +695,25 @@ public class Examen {
         })
         public static class Exercice {
 
-            protected String introduction;
+            public Exercice() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+
+			public Exercice(String introduction, List<Question> question,
+					String title, String id, String langage,
+					BigInteger coefficient) {
+				super();
+				this.introduction = introduction;
+				this.question = question;
+				this.title = title;
+				this.id = id;
+				this.langage = langage;
+				this.coefficient = coefficient;
+			}
+
+
+			protected String introduction;
             @XmlElement(required = true)
             protected List<Examen.Enonce.Exercice.Question> question;
             @XmlAttribute(name = "title")
@@ -945,7 +991,26 @@ public class Examen {
             })
             public static class Question {
 
-                @XmlElement(required = true)
+                public Question() {
+					super();
+					// TODO Auto-generated constructor stub
+				}
+
+				public Question(String consigne, CodeOuTexte codeOuTexte,
+						Caseacocher caseacocher, ChoixMultiples choixMultiples,
+						Protocole protocole, String id, String title) {
+					super();
+					this.consigne = consigne;
+					this.codeOuTexte = codeOuTexte;
+					this.caseacocher = caseacocher;
+					this.choixMultiples = choixMultiples;
+					this.protocole = protocole;
+					this.id = id;
+					this.title = title;
+				}
+
+
+				@XmlElement(required = true)
                 protected String consigne;
                 protected Examen.Enonce.Exercice.Question.CodeOuTexte codeOuTexte;
                 protected Examen.Enonce.Exercice.Question.Caseacocher caseacocher;
@@ -1160,7 +1225,19 @@ public class Examen {
                 })
                 public static class Caseacocher {
 
-                    @XmlElement(name = "case", required = true)
+                    public Caseacocher() {
+						super();
+						// TODO Auto-generated constructor stub
+					}
+
+
+					public Caseacocher(List<Case> _case) {
+						super();
+						this._case = _case;
+					}
+
+
+					@XmlElement(name = "case", required = true)
                     protected List<Examen.Enonce.Exercice.Question.Caseacocher.Case> _case;
 
                     /**
@@ -1217,7 +1294,19 @@ public class Examen {
                     })
                     public static class Case {
 
-                        @XmlValue
+                        public Case() {
+							super();
+							// TODO Auto-generated constructor stub
+						}
+
+						public Case(String value, String id, boolean correction) {
+							super();
+							this.value = value;
+							this.id = id;
+							this.correction = correction;
+						}
+
+						@XmlValue
                         protected String value;
                         @XmlAttribute(name = "id", required = true)
                         protected String id;
@@ -1328,7 +1417,20 @@ public class Examen {
                 })
                 public static class ChoixMultiples {
 
-                    @XmlElement(required = true)
+                    public ChoixMultiples() {
+						super();
+						// TODO Auto-generated constructor stub
+					}
+
+					public ChoixMultiples(List<Choix> choix,
+							BigInteger correction) {
+						super();
+						this.choix = choix;
+						this.correction = correction;
+					}
+
+
+					@XmlElement(required = true)
                     protected List<Examen.Enonce.Exercice.Question.ChoixMultiples.Choix> choix;
                     @XmlElement(required = true)
                     @XmlSchemaType(name = "positiveInteger")
@@ -1411,7 +1513,18 @@ public class Examen {
                     })
                     public static class Choix {
 
-                        @XmlValue
+                        public Choix() {
+							super();
+							// TODO Auto-generated constructor stub
+						}
+
+						public Choix(String value, String id) {
+							super();
+							this.value = value;
+							this.id = id;
+						}
+
+						@XmlValue
                         protected String value;
                         @XmlAttribute(name = "id", required = true)
                         protected String id;
@@ -1513,7 +1626,19 @@ public class Examen {
                 })
                 public static class CodeOuTexte {
 
-                    @XmlElement(required = true)
+                    public CodeOuTexte() {
+						super();
+						// TODO Auto-generated constructor stub
+					}
+
+
+					public CodeOuTexte(List<Segment> segment) {
+						super();
+						this.segment = segment;
+					}
+
+
+					@XmlElement(required = true)
                     protected List<Examen.Enonce.Exercice.Question.CodeOuTexte.Segment> segment;
 
                     /**
@@ -1581,7 +1706,20 @@ public class Examen {
                     })
                     public static class Segment {
 
-                        @XmlElement(required = true)
+                        public Segment() {
+							super();
+							// TODO Auto-generated constructor stub
+						}
+
+						public Segment(String typeCorrection,
+								List<String> correction, String id) {
+							super();
+							this.typeCorrection = typeCorrection;
+							this.correction = correction;
+							this.id = id;
+						}
+
+						@XmlElement(required = true)
                         protected String typeCorrection;
                         @XmlElement(required = true)
                         protected List<String> correction;
@@ -1696,7 +1834,22 @@ public class Examen {
                 })
                 public static class Protocole {
 
-                    @XmlValue
+                    public Protocole() {
+						super();
+						// TODO Auto-generated constructor stub
+					}
+
+					public Protocole(String value, String nbEssais,
+							String version, String duree, String nbPoints) {
+						super();
+						this.value = value;
+						this.nbEssais = nbEssais;
+						this.version = version;
+						this.duree = duree;
+						this.nbPoints = nbPoints;
+					}
+
+					@XmlValue
                     protected String value;
                     @XmlAttribute(name = "nbEssais")
                     protected String nbEssais;
@@ -1897,7 +2050,22 @@ public class Examen {
     })
     public static class Information {
 
-        @XmlElement(required = true)
+        public Information() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+		public Information(EnTete enTete, Destination destination,
+				String version, String commentaires) {
+			super();
+			this.enTete = enTete;
+			this.destination = destination;
+			this.version = version;
+			this.commentaires = commentaires;
+		}
+
+
+		@XmlElement(required = true)
         protected Examen.Information.EnTete enTete;
         protected Examen.Information.Destination destination;
         protected String version;
@@ -2029,7 +2197,19 @@ public class Examen {
         })
         public static class Destination {
 
-            @XmlElement(name = "UV")
+            public Destination() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+
+			public Destination(String uv, String module, String coefficient) {
+				super();
+				this.uv = uv;
+				this.module = module;
+				this.coefficient = coefficient;
+			}
+
+			@XmlElement(name = "UV")
             protected String uv;
             protected String module;
             protected String coefficient;
@@ -2142,7 +2322,22 @@ public class Examen {
         })
         public static class EnTete {
 
-            @XmlElement(required = true)
+            public EnTete() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+
+			public EnTete(String titre, String objet, String date,
+					String auteur, String source) {
+				super();
+				this.titre = titre;
+				this.objet = objet;
+				this.date = date;
+				this.auteur = auteur;
+				this.source = source;
+			}
+
+			@XmlElement(required = true)
             protected String titre;
             protected String objet;
             protected String date;
