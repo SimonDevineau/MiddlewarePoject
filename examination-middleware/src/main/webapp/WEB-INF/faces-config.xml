@@ -97,6 +97,31 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>exerciceStudentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.ExerciceStudent</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>questionStudentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.QuestionStudent</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>caseACocherQuestionStudentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.CaseACocherQuestion</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>choixMultipleQuestionStudentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.ChoixMultipleQuestion</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>codeQuestionStudentBean</managed-bean-name>
+		<managed-bean-class>fr.emn.examination.model.CodeQuestion</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>fileUploadController</managed-bean-name>
 		<managed-bean-class>fr.emn.examination.controller.FileUploadController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
