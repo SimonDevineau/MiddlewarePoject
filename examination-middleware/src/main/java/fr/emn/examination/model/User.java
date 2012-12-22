@@ -137,4 +137,8 @@ public class User implements Serializable {
 	this.examen = examen;
     }
 
+    public String beginExam() {
+	return "success";
+    }
+
 }

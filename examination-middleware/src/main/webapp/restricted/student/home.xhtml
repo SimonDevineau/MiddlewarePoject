@@ -1,24 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" > 
-		
-<h:head><script type="text/javascript" src="includes/menu.js"></script></h:head> 
-<body> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<script type="text/javascript" src="includes/menu.js"></script>
+</h:head>
+<body>
 
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="/includes/header.xhtml" />
 		</ui:insert>
 	</div>
-	<div id="menu">
-		<ui:insert name="menu">
-			<ui:include src="/includes/menu.xhtml" />
-		</ui:insert>
-	</div>
-<!-- Code de la partie client -->
-<p:commandButton value="Commencer examen" action="examen.xhtml"></p:commandButton>
-</body> 
+	<!-- Code de la partie client -->
+	<h:form>
+		<p:commandButton value="Commencer examen" action="#{userBean.beginExam}"></p:commandButton>
+	</h:form>
+</body>
 </html>

@@ -164,4 +164,12 @@
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/restricted/student/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{userBean.beginExam}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/restricted/student/examen.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

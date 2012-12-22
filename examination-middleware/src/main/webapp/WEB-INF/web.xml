@@ -19,7 +19,7 @@
 	</filter>
 	<filter-mapping>
     	<filter-name>PrimeFaces FileUpload Filter</filter-name>
-    	<servlet-name>Faces Servlet</servlet-name>
+    	<url-pattern>/restricted/administrator/UploadSubject.xhtml</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>LoginFilter</filter-name>
