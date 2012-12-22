@@ -23,7 +23,11 @@
 		<p:accordionPanel value="#{userBean.examen.exos}" var="exo">
 			<p:tab title="#{exo.title}">
 				<p:outputLabel value="#{exo.introduction}"></p:outputLabel>
+<<<<<<< HEAD
 				<p:accordionPanel multiple="true" value="#{exo.questions}" var="q">
+=======
+				<p:accordionPanel multiple="true" value="#{exo.}" var="q">
+>>>>>>> branch 'master' of git@github.com:SimonDevineau/MiddlewarePoject.git
 					<p:tab title="#{q.title}">
 						<p:outputLabel value="#{q.consigne}"></p:outputLabel>
 						<h:form>
