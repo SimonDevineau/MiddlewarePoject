@@ -24,8 +24,8 @@ interface Corps<T> extends AnneauUnitaire<T>, GroupeMul<T> {}
 
 class Calculs {
 
-    /*<question id="q1"><s id="q1f1">*/        public static <T extends GroupeAdd<T>> T soustraction(T x, T y)        /*</segment>*/        {
-        /*<segment id="q1f2">*/            return x.somme(y.oppose());           /*</segment>*/
+    /*<question id="q1"><segment id="q1s1">*/        public static <T extends GroupeAdd<T>> T soustraction(T x, T y)        /*</segment>*/        {
+        /*<segment id="q1s2">*/            return x.somme(y.oppose());           /*</segment>*/
         
     }                /*</question>*/
 
