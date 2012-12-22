@@ -20,10 +20,10 @@
 		<p:outputLabel value="#{userBean.examen.introduction}"></p:outputLabel>
 
 
-		<p:accordionPanel value="#{userBean.examen.enonce.exercice}" var="exo">
+		<p:accordionPanel value="#{userBean.examen.exos}" var="exo">
 			<p:tab title="#{exo.title}">
 				<p:outputLabel value="#{exo.introduction}"></p:outputLabel>
-				<p:accordionPanel multiple="true" value="#{exo.question}" var="q">
+				<p:accordionPanel multiple="true" value="#{exo.}" var="q">
 					<p:tab title="#{q.title}">
 						<p:outputLabel value="#{q.consigne}"></p:outputLabel>
 						<h:form>
