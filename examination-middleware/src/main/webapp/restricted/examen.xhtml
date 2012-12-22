@@ -20,37 +20,40 @@
 		<p:outputLabel value="#{userBean.examen.introduction}"></p:outputLabel>
 
 
-		<p:accordionPanel value="#{userBean.examen.enonce.exercice}" var="exo">
+		<p:accordionPanel value="#{userBean.examen.exos}" var="exo">
 			<p:tab title="#{exo.title}">
 				<p:outputLabel value="#{exo.introduction}"></p:outputLabel>
-				<p:accordionPanel multiple="true" value="#{exo.question}" var="q">
+				<p:accordionPanel multiple="true" value="#{exo.questions}" var="q">
 					<p:tab title="#{q.title}">
 						<p:outputLabel value="#{q.consigne}"></p:outputLabel>
 						<h:form>
 							<!-- Case à cocher -->
 
-							<p:dataList rendered="#{q.caseacocher!=null}"
+							<!-- <p:dataList rendered="#{q.caseacocher!=null}"
 								value="#{q.caseacocher.case}" var="c">
-								<!--  TODO -->
 								<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
 								<p:outputLabel value="#{c.value}"></p:outputLabel>
-								
-								<!--  TODO -->
-							</p:dataList>
+							</p:dataList> -->
+
+							<h:selectManyCheckbox rendered="#{q.caseacocher!=null}"
+								id="#{q.id}" value="#{q.caseacocher.case}"
+								layout="pageDirection" var="c">
+								<f:selectItem id="#{c.id}" itemLabel="#{c.value}" />
+							</h:selectManyCheckbox>
 
 
 							<!-- Choix multiple -->
 
 							<p:selectOneRadio rendered="#{q.choixMultiples!=null}"
-								layout="pageDirection" value="#{q.choixMultiples.choix}">
-								<!--  TODO -->
-								<f:selectItems value=""></f:selectItems>
-								<!--  TODO -->
+								id="#{q.id}" layout="pageDirection"
+								value="#{q.choixMultiples.choix}" var="ch">
+								<f:selectItems id="#{ch.id}" itemLabel="#{ch.value}" />
 							</p:selectOneRadio>
 
 							<!-- Code ou texte -->
 							<p:dataList value="#{q.codeOuTexte.segment}" var="seg"
 								rendered="#{q.codeOuTexte!=null}">
+								
 								<p:inputTextarea rows="10" cols="150" autoResize="false" />
 								<!--  TODO : rajouter les bout de code fournis autour -->
 
@@ -58,13 +61,19 @@
 
 							<p:commandButton value="Valider"></p:commandButton>
 						</h:form>
+						<!-- Protocole, à voir si on affiche ou pas -->
+						<!--
+						<p:outputLabel value="Durée : #{q.protocole.duree}"></p:outputLabel>
+						<p:outputLabel value="Nombre de points : #{q.protocole.nbPoints}"></p:outputLabel>
+						<p:outputLabel value="Nombre d'essais : #{q.protocole.nbEssais}"></p:outputLabel>
+						 -->
 					</p:tab>
 				</p:accordionPanel>
 			</p:tab>
 		</p:accordionPanel>
 
 
-		<p:outputLabel value="#{examenBean.conclusion}"></p:outputLabel>
+		<p:outputLabel value="#{examenBean.conclusion}" ></p:outputLabel>
 	</h:form>
 </body>
 </html>
