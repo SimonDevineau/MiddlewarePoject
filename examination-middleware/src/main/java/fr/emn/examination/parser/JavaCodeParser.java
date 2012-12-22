@@ -9,8 +9,12 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.JAXBException;
+
 import fr.emn.examination.model.CodeQuestion;
+import fr.emn.examination.model.ExamenStudent;
 import fr.emn.examination.model.JavaCode;
+import fr.emn.examination.persistence.Factory;
 
 public class JavaCodeParser {
 
@@ -21,9 +25,11 @@ public class JavaCodeParser {
 	    VALIDATION_REGEX = "<\\ *validation\\ */\\ *>";
 
     private JavaCode      javaCode;
+    private ExamenStudent exam;
 
-    public JavaCodeParser(String code) {
+    public JavaCodeParser(String code, ExamenStudent exam) {
 	javaCode = new JavaCode();
+	this.exam = exam;
 	parse(code);
     }
 
@@ -82,7 +88,8 @@ public class JavaCodeParser {
 		questionStarted = false;
 		javaCode.getQuestionIds().add(questionId);
 		displayedCode.add(previousCode);
-		CodeQuestion newQuestion = new CodeQuestion(javaCode,
+		CodeQuestion newQuestion = new CodeQuestion(exam
+		        .getQuestionsMap().get(questionId), javaCode,
 		        questionId, displayedCode, segmentIds, segments);
 		javaCode.getQuestions().put(questionId, newQuestion);
 
@@ -110,7 +117,22 @@ public class JavaCodeParser {
 	    String s = "";
 	    while (br.ready())
 		s += (char) br.read();
-	    System.out.println(new JavaCodeParser(s).getJavaCode());
+	    ExamenStudent examen;
+	    String xmlString = Factory.getExamenXMLDAO().retrieveAll().get(0);
+	    ExamenParser parserXml = new ExamenParser();
+
+	    try {
+		examen = new ExamenStudent(parserXml.getFromString(xmlString));
+	    }
+	    catch (JAXBException e) {
+		e.printStackTrace();
+		examen = new ExamenStudent(); // TODO la meilleure solution
+					      // serait
+		                              // de relancer l'exception au
+					      // niveau
+		                              // superieur
+	    }
+	    System.out.println(new JavaCodeParser(s, examen).getJavaCode());
 	    br.close();
 	}
 	catch (IOException e) {

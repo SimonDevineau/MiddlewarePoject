@@ -46,12 +46,12 @@ public class User implements Serializable {
 	}
 	String xmlString = Factory.getExamenXMLDAO().retrieveAll().get(0);
 	ExamenParser parserXml = new ExamenParser();
-	String javaString = Factory.getExamenCodeDAO().retrieveAll().get(0);
-	JavaCodeParser parserJava = new JavaCodeParser(javaString);
 
 	try {
-	    examen = new ExamenStudent(parserXml.getFromString(xmlString),
-		    parserJava.getJavaCode());
+	    examen = new ExamenStudent(parserXml.getFromString(xmlString));
+	    String javaString = Factory.getExamenCodeDAO().retrieveAll().get(0);
+	    JavaCodeParser parserJava = new JavaCodeParser(javaString, examen);
+	    examen.setJavaCode(parserJava.getJavaCode());
 	}
 	catch (JAXBException e) {
 	    e.printStackTrace();

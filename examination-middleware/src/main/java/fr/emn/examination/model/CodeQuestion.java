@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.emn.examination.model.examen.Examen.Enonce.Exercice.Question;
+
 public class CodeQuestion extends QuestionStudent implements Serializable {
 
     /**
@@ -17,9 +19,10 @@ public class CodeQuestion extends QuestionStudent implements Serializable {
 
     private JavaCode                javaCode;
 
-    public CodeQuestion(JavaCode javaCode, String id,
+    public CodeQuestion(Question q, JavaCode javaCode, String id,
 	    ArrayList<String> displayedCode, ArrayList<String> segmentIds,
 	    HashMap<String, String> segments) {
+	super(q);
 	this.segments = segments;
 	this.displayedCode = displayedCode;
 	this.segmentIds = segmentIds;
