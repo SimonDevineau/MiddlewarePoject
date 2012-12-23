@@ -166,7 +166,7 @@
 																		</xs:complexType>
 																	</xs:element>
 																	<xs:element
-																		name="correction" type="xs:positiveInteger"
+																		name="correction" type="xs:string"
 																		maxOccurs="1" minOccurs="1">
 																	</xs:element>
 																</xs:sequence>
@@ -203,7 +203,7 @@
 										</xs:element>
 									</xs:sequence>
 									<xs:attribute type="xs:string"
-										name="title" />
+										name="title" use="required"/>
 									<xs:attribute
 										type="xs:string" name="id" use="required" />
 									<xs:attribute type="xs:string"

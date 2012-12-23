@@ -3,7 +3,7 @@
 	xsi:noNamespaceSchemaLocation="xmlSchemaExamen.xsd" id="idBDD">
 	<information>
 		<enTete>
-			<titre>Titreeee</titre>
+			<titre>Examen de test pour le middleware</titre>
 			<objet>Cet examen est un test pour le Middleware</objet>
 			<date>19 décembre 2012</date>
 			<auteur>L'equipe GSI</auteur>
@@ -15,28 +15,6 @@
 			<introduction>Dans un module de calculs, appelé Calculs,
 			on développe des fonctions génériques de calculs opérant sur les interfaces précédentes.
 			</introduction>
-
-			<question id="q1">
-				<consigne>Quel est le meilleur département?</consigne>
-				<caseacocher>
-					<case correction="true" id="c2">Loire-Atlantique</case>
-					<case correction="true" id="c1">Vendée</case>
-				</caseacocher>
-				<protocole nbPoints="2"></protocole>
-			</question>
-		</exercice>
-		<exercice langage="Java" id="2">
-			<introduction>Introduction de l'expo 2</introduction>
-			<question id="q1">
-				<consigne>Quel est le meilleur département?</consigne>
-				<caseacocher>
-					<case correction="true" id="c2">Loire-Atlantique</case>
-					<case correction="true" id="c1">Vendée</case>
-				</caseacocher>
-				<protocole nbPoints="2"></protocole>
-			</question>
-		</exercice>
-		<exercice langage="Java" id="3">
 			<question id="q1">
 				<consigne>Test de code</consigne>
 				<codeOuTexte>
@@ -52,6 +30,31 @@
 				</codeOuTexte>
 				<protocole nbPoints="4"></protocole>
 			</question>
+
+			<question id="q2">
+				<consigne>Cocher les visibilités existantes en Java</consigne>
+				<caseacocher>
+					<case correction="true" id="c2">Public</case>
+					<case correction="true" id="c1">Private</case>
+					<case correction="true" id="c3">Protected</case>
+					<case correction="true" id="c4">Package</case>
+					<case correction="false" id="c5">Intime</case>
+				</caseacocher>
+				<protocole nbPoints="2"></protocole>
+			</question>
 		</exercice>
+		<exercice langage="Java" id="2" title="Exercice 2">
+			<introduction>Introduction de l'exo 2</introduction>
+			<question id="q1">
+				<consigne>L'héritage mutiple éxiste-t-il en Java?</consigne>
+				<choixMultiples>
+					<choix id="c1">Oui</choix>
+					<choix id="c2">Non</choix>
+					<correction>c1</correction>
+				</choixMultiples>
+				<protocole nbPoints="2"></protocole>
+			</question>
+		</exercice>
+
 	</enonce>
 </examen>

@@ -716,7 +716,7 @@ public class Examen {
 			protected String introduction;
             @XmlElement(required = true)
             protected List<Examen.Enonce.Exercice.Question> question;
-            @XmlAttribute(name = "title")
+            @XmlAttribute(name = "title", required = true)
             protected String title;
             @XmlAttribute(name = "id", required = true)
             protected String id;
@@ -1423,7 +1423,7 @@ public class Examen {
 					}
 
 					public ChoixMultiples(List<Choix> choix,
-							BigInteger correction) {
+							String correction) {
 						super();
 						this.choix = choix;
 						this.correction = correction;
@@ -1434,7 +1434,7 @@ public class Examen {
                     protected List<Examen.Enonce.Exercice.Question.ChoixMultiples.Choix> choix;
                     @XmlElement(required = true)
                     @XmlSchemaType(name = "positiveInteger")
-                    protected BigInteger correction;
+                    protected String correction;
 
                     /**
                      * Gets the value of the choix property.
@@ -1473,7 +1473,7 @@ public class Examen {
                      *     {@link BigInteger }
                      *     
                      */
-                    public BigInteger getCorrection() {
+                    public String getCorrection() {
                         return correction;
                     }
 
@@ -1485,7 +1485,7 @@ public class Examen {
                      *     {@link BigInteger }
                      *     
                      */
-                    public void setCorrection(BigInteger value) {
+                    public void setCorrection(String value) {
                         this.correction = value;
                     }
 
