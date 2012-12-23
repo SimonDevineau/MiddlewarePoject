@@ -55,6 +55,16 @@
 							<!-- 								 TODO : rajouter les bout de code fournis autour -->
 
 							<!-- 							</p:dataList> -->
+							<p:dataList value="#{q.displayedCode}" var="code"
+								rendered="#{q.codeOuTexte!=null}">
+								<p:outputLabel value="#{code}"></p:outputLabel>
+								<br />
+								<p:inputTextarea
+									rendered="#{q.segmentIds.size()>q.displayedCode.indexOf(code)}"
+									value="#{q.segments.get(q.displayedCode.indexOf(code))}"
+									rows="5" cols="50" autoResize="false"></p:inputTextarea>
+							</p:dataList>
+
 
 							<p:commandButton value="Valider"></p:commandButton>
 						</h:form>

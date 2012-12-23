@@ -2,6 +2,7 @@ package fr.emn.examination.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class ExamenStudent extends Examen implements Serializable {
 	        .getIntroduction(), exam.getEnonce(), exam.getConclusion(),
 	        exam.getId());
 	this.exos = new ArrayList<ExerciceStudent>();
+	this.questionsMap = new HashMap<String, Examen.Enonce.Exercice.Question>();
 	for (fr.emn.examination.model.examen.Examen.Enonce.Exercice exo : exam
 	        .getEnonce().getExercice()) {
 	    for (Question q : exo.getQuestion()) {
